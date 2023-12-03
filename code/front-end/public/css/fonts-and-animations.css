@@ -1,0 +1,66 @@
+/*https://developers.google.com/fonts/docs/css2*/
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;700&display=swap'); /*Contains Lato: Thin 100, Light 300, Bold 700*/
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
+
+@font-face {
+    font-family: spotify;
+    src:url("../fonts/Light-Spotify.ttf") format('truetype'); /* ttf -> true type font */
+}
+
+@keyframes zoomFadeIn {
+    0% {
+        opacity: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0) /* https://stackoverflow.com/a/39468304/9375488 */
+    }
+    100% {
+        opacity: 1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1)
+    }
+}
+
+@keyframes zoomFadeOut {
+    0% {
+        opacity: 1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1)
+    }
+    100% {
+        opacity: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0)
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes loading {
+    from {
+        transform: rotate(0turn)
+    }
+
+    to {
+        transform: rotate(1turn)
+    }
+}

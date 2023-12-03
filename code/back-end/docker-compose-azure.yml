@@ -1,0 +1,14 @@
+version: '3.3'
+services:
+  battle-service-1:
+    image: p4ulor/battle-service-compose-azure #must be unique profile and name to publish publicly on your https://hub.docker.com/ profile
+    container_name: battle-service-1
+    hostname: battle-service-1
+    build: # The image will be built if it wasn't yet pushed to dockerhub
+      context: .
+      dockerfile: ./DockerfilePostgres
+    environment:
+      JDBC_DATABASE_URL: jdbc:postgresql://postgresdbflex.postgres.database.azure.com:5432/postgres?user=postgresdbflex&password=123456A! # note: I have deleted this DB
+      port: 8080 # MUST BE 8080 BECAUSE OF AZURE
+    ports:
+      - 8080:8080 # MUST BE 8080 BECAUSE OF AZURE

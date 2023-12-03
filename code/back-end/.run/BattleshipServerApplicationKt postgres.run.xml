@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="BattleshipServerApplicationKt postgres" type="JetRunConfigurationType">
+    <option name="MAIN_CLASS_NAME" value="battleship.server.BattleshipServerApplicationKt" />
+    <module name="battleship-server.main" />
+    <option name="PROGRAM_PARAMETERS" value="postgres" />
+    <shortenClasspath name="NONE" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

@@ -1,0 +1,3406 @@
+{
+	"info": {
+		"_postman_id": "38bc1f3e-5eca-44cd-8b1e-cb9dbc7d9c75",
+		"name": "DAW",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24004812"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Error Creating/Login/Getting",
+					"item": [
+						{
+							"name": "Create user w/ repeated name",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"paulo\",\r\n    \"email\": \"paulo1@gmail.com\",\r\n    \"password\": \"aaaa\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/users/newuser",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"users",
+										"newuser"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get user that doesn't exist",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9000/users/777",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"users",
+										"777"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login w/ wrong password",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"emailOrName\": \"paulo\",\r\n    \"password\": \"wrong pass\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/users/login?&name=2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"users",
+										"login"
+									],
+									"query": [
+										{
+											"key": null,
+											"value": null
+										},
+										{
+											"key": "name",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login w/ empty fields",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"emailOrName\": \" \",\r\n    \"password\": \"wrong pass\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/users/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create user w/ invalid name",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \" \",\r\n    \"email\": \"newemail222@gmail.com\",\r\n    \"password\": \"aaa\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/users/newuser",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"users",
+										"newuser"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create user w/ missing field",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"aaaa\",\r\n    \"email\": \"newemail2222@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/users/newuser",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"users",
+										"newuser"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create user w/ repeated email",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"aa\",\r\n    \"email\": \"goncalo@gmail.com\",\r\n    \"password\": \"newuserpw\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/users/newuser",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"users",
+										"newuser"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User Login w/ invalid name",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"emailOrName\": \" \",\r\n    \"password\": \"ay\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/users/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Create user (doesnt accept 'ç')!!!",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"gongas\",\r\n    \"email\": \"goncalo222@gmail.com\",\r\n    \"password\": \"diogo22\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/users/newuser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"users",
+								"newuser"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create user (doesnt accept 'ç')!!!",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"gongas\",\r\n    \"email\": \"goncalo222@gmail.com\",\r\n    \"password\": \"diogo22\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/users/newuser",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"users",
+										"newuser"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "token=6fd69982-c596-4968-b5b4-e7982207a24d;Path=/"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Feb 2023 15:11:09 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"6fd69982-c596-4968-b5b4-e7982207a24d\",\n    \"userID\": 17\n}"
+						}
+					]
+				},
+				{
+					"name": "Get user (by id)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/users/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"users",
+								"5"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get user (by id)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9000/users/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"users",
+										"5"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Feb 2023 15:12:37 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 5,\n    \"name\": \"joao\",\n    \"playCount\": 0,\n    \"winCount\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "Ranking (by wins)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/users/ranking",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"users",
+								"ranking"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Ranking (by wins)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9000/users/ranking",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"users",
+										"ranking"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Feb 2023 15:12:55 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 2,\n        \"name\": \"pedro\",\n        \"playCount\": 1,\n        \"winCount\": 3\n    },\n    {\n        \"id\": 3,\n        \"name\": \"paulo\",\n        \"playCount\": 2,\n        \"winCount\": 2\n    },\n    {\n        \"id\": 1,\n        \"name\": \"goncalo\",\n        \"playCount\": 3,\n        \"winCount\": 1\n    },\n    {\n        \"id\": 5,\n        \"name\": \"joao\",\n        \"playCount\": 0,\n        \"winCount\": 1\n    },\n    {\n        \"id\": 4,\n        \"name\": \"chico\",\n        \"playCount\": 1,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 6,\n        \"name\": \"samuel\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 7,\n        \"name\": \"carlos\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 8,\n        \"name\": \"francisco\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 9,\n        \"name\": \"rogerio\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 10,\n        \"name\": \"rita\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 11,\n        \"name\": \"filipa\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 12,\n        \"name\": \"sandra\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 13,\n        \"name\": \"joana\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 14,\n        \"name\": \"miguel\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 15,\n        \"name\": \"alexandre\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 16,\n        \"name\": \"diogo\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 17,\n        \"name\": \"gongas\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Ranking (by wins) (bad paging is auto-fixed by server)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/users/ranking?limit=-1&skip=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"users",
+								"ranking"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "-1"
+								},
+								{
+									"key": "skip",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Ranking (by wins) (bad paging is auto-fixed by server)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9000/users/ranking?limit=-1&skip=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"users",
+										"ranking"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "-1"
+										},
+										{
+											"key": "skip",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Feb 2023 15:13:05 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 3,\n        \"name\": \"paulo\",\n        \"playCount\": 2,\n        \"winCount\": 2\n    },\n    {\n        \"id\": 1,\n        \"name\": \"goncalo\",\n        \"playCount\": 3,\n        \"winCount\": 1\n    },\n    {\n        \"id\": 5,\n        \"name\": \"joao\",\n        \"playCount\": 0,\n        \"winCount\": 1\n    },\n    {\n        \"id\": 4,\n        \"name\": \"chico\",\n        \"playCount\": 1,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 6,\n        \"name\": \"samuel\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 7,\n        \"name\": \"carlos\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 8,\n        \"name\": \"francisco\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 9,\n        \"name\": \"rogerio\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 10,\n        \"name\": \"rita\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 11,\n        \"name\": \"filipa\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 12,\n        \"name\": \"sandra\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 13,\n        \"name\": \"joana\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 14,\n        \"name\": \"miguel\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 15,\n        \"name\": \"alexandre\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 16,\n        \"name\": \"diogo\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 17,\n        \"name\": \"gongas\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Ranking (by games played)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/users/ranking/played",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"users",
+								"ranking",
+								"played"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Ranking (by games played)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9000/users/ranking/played",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"users",
+										"ranking",
+										"played"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Feb 2023 15:13:15 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"goncalo\",\n        \"playCount\": 3,\n        \"winCount\": 1\n    },\n    {\n        \"id\": 3,\n        \"name\": \"paulo\",\n        \"playCount\": 2,\n        \"winCount\": 2\n    },\n    {\n        \"id\": 2,\n        \"name\": \"pedro\",\n        \"playCount\": 1,\n        \"winCount\": 3\n    },\n    {\n        \"id\": 4,\n        \"name\": \"chico\",\n        \"playCount\": 1,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 5,\n        \"name\": \"joao\",\n        \"playCount\": 0,\n        \"winCount\": 1\n    },\n    {\n        \"id\": 6,\n        \"name\": \"samuel\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 7,\n        \"name\": \"carlos\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 8,\n        \"name\": \"francisco\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 9,\n        \"name\": \"rogerio\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 10,\n        \"name\": \"rita\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 11,\n        \"name\": \"filipa\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 12,\n        \"name\": \"sandra\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 13,\n        \"name\": \"joana\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 14,\n        \"name\": \"miguel\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 15,\n        \"name\": \"alexandre\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 16,\n        \"name\": \"diogo\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 17,\n        \"name\": \"gongas\",\n        \"playCount\": 0,\n        \"winCount\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Ranking (by wins) limit 2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/users/ranking?limit=2&skip=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"users",
+								"ranking"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2"
+								},
+								{
+									"key": "skip",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Ranking (by wins) limit 2",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9000/users/ranking?limit=2&skip=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"users",
+										"ranking"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "2"
+										},
+										{
+											"key": "skip",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Feb 2023 15:13:32 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 3,\n        \"name\": \"paulo\",\n        \"playCount\": 2,\n        \"winCount\": 2\n    },\n    {\n        \"id\": 1,\n        \"name\": \"goncalo\",\n        \"playCount\": 3,\n        \"winCount\": 1\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Ranking (by games played) limit 2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/users/ranking/played?limit=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"users",
+								"ranking",
+								"played"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Ranking (by games played) limit 2",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9000/users/ranking/played?limit=5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"users",
+										"ranking",
+										"played"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Feb 2023 15:13:43 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"goncalo\",\n        \"playCount\": 3,\n        \"winCount\": 1\n    },\n    {\n        \"id\": 3,\n        \"name\": \"paulo\",\n        \"playCount\": 2,\n        \"winCount\": 2\n    },\n    {\n        \"id\": 2,\n        \"name\": \"pedro\",\n        \"playCount\": 1,\n        \"winCount\": 3\n    },\n    {\n        \"id\": 4,\n        \"name\": \"chico\",\n        \"playCount\": 1,\n        \"winCount\": 0\n    },\n    {\n        \"id\": 5,\n        \"name\": \"joao\",\n        \"playCount\": 0,\n        \"winCount\": 1\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "User Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"emailOrName\": \"paulo\",\r\n    \"password\": \"ay\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "User Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"emailOrName\": \"paulo\",\r\n    \"password\": \"ay\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/users/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "token=d83a659c-b452-11ec-b909-0242ac120002;Path=/"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Feb 2023 15:13:56 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"d83a659c-b452-11ec-b909-0242ac120002\",\n    \"userID\": 3\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "GameSetup",
+			"item": [
+				{
+					"name": "Error CREATE Game",
+					"item": [
+						{
+							"name": "Create game w/ invalid lobbyName",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"lobbyName\": \" \",\r\n    \"rules\": null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/setup/newgame",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"setup",
+										"newgame"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create game w/ out auth token",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"lobbyName\": \"newlobbypostman\",\r\n    \"rules\": null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/setup/newgame",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"setup",
+										"newgame"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create game w/ user already in another on going game",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{chicoToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"lobbyName\": \"a a1111 1 a\",\r\n   \"rules\": {\r\n       \"columnDim\": \"2\",\r\n       \"rowDim\": 2,\r\n       \"shotsPerRound\": 1,\r\n       \"setupTime\": 5,\r\n       \"timeToMakeMove\": 5\r\n   }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/setup/newgame",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"setup",
+										"newgame"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create game w/ missing params (server auto fills w/ default, and ship types will be default and exclude the ones that dont fit the board)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{carlosToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"lobbyName\": \"a a1111 1 a\",\r\n   \"rules\": {\r\n       \"columnDim\": \"4\",\r\n       \"rowDim\": 4,\r\n       \"shotsPerRound\": 1,\r\n\r\n       \"setupTime\": 5\r\n       \r\n   }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/setup/newgame",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"setup",
+										"newgame"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create game w/ invalid number of shots",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{chicoToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"lobbyName\": \"a a1111 1 a\",\r\n   \"rules\": {\r\n       \"columnDim\": \"2\",\r\n       \"rowDim\": 2,\r\n       \"shotsPerRound\": 6,\r\n       \"setupTime\": 5,\r\n       \"timeToMakeMove\": 5\r\n   }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/setup/newgame",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"setup",
+										"newgame"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create game w/ empty shiptypes",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{franciscoToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"lobbyName\": \"a a1111 1 a\",\r\n   \"rules\": {\r\n       \"columnDim\": \"2\",\r\n       \"rowDim\": 2,\r\n       \"shotsPerRound\": 1,\r\n       \"shipsAllowed\": [],\r\n       \"setupTime\": 5,\r\n       \"timeToMakeMove\": 5\r\n   }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/setup/newgame",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"setup",
+										"newgame"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create game w/ null shiptypes",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{franciscoToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"lobbyName\": \"a a1111 1 a\",\r\n   \"rules\": {\r\n       \"columnDim\": \"2\",\r\n       \"rowDim\": 2,\r\n       \"shotsPerRound\": 1,\r\n       \"shipsAllowed\": [\r\n           {\r\n               \"shipType\": \"submarine\",\r\n               \"quantityAllowed\": 1\r\n           },\r\n           null\r\n       ],\r\n       \"setupTime\": 5,\r\n       \"timeToMakeMove\": 5\r\n   }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/setup/newgame",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"setup",
+										"newgame"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create game w/ non existing ship types",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{franciscoToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"lobbyName\": \"a a1111 1 a\",\r\n   \"rules\": {\r\n       \"columnDim\": \"2\",\r\n       \"rowDim\": 2,\r\n       \"shotsPerRound\": 1,\r\n       \"shipsAllowed\": [\r\n           {\r\n               \"shipType\": \"aaaaa\",\r\n               \"quantityAllowed\": 1\r\n           }\r\n       ],\r\n       \"setupTime\": 5,\r\n       \"timeToMakeMove\": 5\r\n   }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/setup/newgame",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"setup",
+										"newgame"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create game w/ exceed max quantity of a ship types in a game",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{chicoToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"lobbyName\": \"a a1111 1 a\",\r\n   \"rules\": {\r\n       \"columnDim\": \"2\",\r\n       \"rowDim\": 2,\r\n       \"shotsPerRound\": 1,\r\n       \"shipsAllowed\": [\r\n           {\r\n               \"shipType\": \"Carrier\",\r\n               \"quantityAllowed\": 100\r\n           }\r\n       ],\r\n       \"setupTime\": 5,\r\n       \"timeToMakeMove\": 5\r\n   }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/setup/newgame",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"setup",
+										"newgame"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create game w/ invalid board dimension",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{chicoToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"lobbyName\": \"a a1111 1 a\",\r\n   \"rules\": {\r\n       \"columnDim\": \"1\",\r\n       \"rowDim\": 1,\r\n       \"shotsPerRound\": 1,\r\n       \"setupTime\": 5,\r\n       \"timeToMakeMove\": 5\r\n   }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/setup/newgame",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"setup",
+										"newgame"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Error SETUP Board",
+					"item": [
+						{
+							"name": "Join open game that is occupied (knowing the ID)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{franciscoToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"gameID\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/setup/joingame",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"setup",
+										"joingame"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Join game that doesn't exist",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{franciscoToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"gameID\": 300\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/setup/joingame",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"setup",
+										"joingame"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Empty list of ships",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "359fcc7e-3c63-4258-8840-30e408494ba0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ships\": []\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/setup/board",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"setup",
+										"board"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "No auth token",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ships\": [\r\n        {\r\n            \"shipType\": \"Carrier\",\r\n            \"head\": {\r\n                \"column\": 1,\r\n                \"row\": 1\r\n            },\r\n            \"direction\": \"Down\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/setup/board",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"setup",
+										"board"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Auth send is valid, but user associated w/ it isn't in any on going game to setup a board",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "359fcc7e-3c63-4258-8840-30e408494ba0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ships\": [\r\n        {\r\n            \"shipType\": \"Carrier\",\r\n            \"head\": {\r\n                \"column\": 1,\r\n                \"row\": 1\r\n            },\r\n            \"direction\": \"Down\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/setup/board",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"setup",
+										"board"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ship type indicated isn't valid",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "4529bd41-9b91-4a53-b191-02750487af86",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ships\": [\r\n        {\r\n            \"shipType\": \"aaaaa\",\r\n            \"head\": {\r\n                \"column\": 1,\r\n                \"row\": 1\r\n            },\r\n            \"direction\": \"Down\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/setup/board",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"setup",
+										"board"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ship setup phase has ended (user can no longer change his ships positions)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{gonçaloToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ships\": [\r\n        {\r\n            \"shipType\": \"Cruiser\",\r\n            \"head\": {\r\n                \"column\": 1,\r\n                \"row\": 1\r\n            },\r\n            \"direction\": \"Down\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/setup/board",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"setup",
+										"board"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Head position is missing",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "4529bd41-9b91-4a53-b191-02750487af86",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ships\": [\r\n        {\r\n            \"shipType\": \"carrier\",\r\n            \"head\": {\r\n                \r\n                \"row\": 1\r\n            },\r\n            \"direction\": \"Down\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/setup/board",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"setup",
+										"board"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Head position is negative",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "4529bd41-9b91-4a53-b191-02750487af86",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ships\": [\r\n        {\r\n            \"shipType\": \"carrier\",\r\n            \"head\": {\r\n                \"column\": -1,\r\n                \"row\": 1\r\n            },\r\n            \"direction\": \"Down\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/setup/board",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"setup",
+										"board"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Head position is off limits",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "4529bd41-9b91-4a53-b191-02750487af86",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ships\": [\r\n        {\r\n            \"shipType\": \"carrier\",\r\n            \"head\": {\r\n                \"column\": 30,\r\n                \"row\": 1\r\n            },\r\n            \"direction\": \"Down\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/setup/board",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"setup",
+										"board"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Direction doesn't exist",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "4529bd41-9b91-4a53-b191-02750487af86",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ships\": [\r\n        {\r\n            \"shipType\": \"carrier\",\r\n            \"head\": {\r\n                \"column\": 1,\r\n                \"row\": 1\r\n            },\r\n            \"direction\": \"diagonal\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/setup/board",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"setup",
+										"board"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ship type isn't acceptable for the rules set of the corresponding game",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{rogerioToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ships\": [\r\n        {\r\n            \"shipType\": \"carrier\",\r\n            \"head\": {\r\n                \"column\": 1,\r\n                \"row\": 1\r\n            },\r\n            \"direction\": \"Down\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/setup/board",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"setup",
+										"board"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ship type quantity isn't acceptable for the rules set of the corresponding game",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ritaToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ships\": [\r\n        {\r\n            \"shipType\": \"destroyer\",\r\n            \"head\": {\r\n                \"column\": 1,\r\n                \"row\": 1\r\n            },\r\n            \"direction\": \"Down\"\r\n        },\r\n\r\n        {\r\n            \"shipType\": \"destroyer\",\r\n            \"head\": {\r\n                \"column\": 4,\r\n                \"row\": 1\r\n            },\r\n            \"direction\": \"Down\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/setup/board",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"setup",
+										"board"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ship position-head-dir is incompatible with the dimensions of the board",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ritaToken-10}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ships\": [\r\n        {\r\n            \"shipType\": \"Submarine\",\r\n            \"head\": {\r\n                \"column\": 1,\r\n                \"row\": 1\r\n            },\r\n            \"direction\": \"Right\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/setup/board",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"setup",
+										"board"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ship overlaps with others!!! side by side",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ritaToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ships\": [\r\n        {\r\n            \"shipType\": \"Submarine\",\r\n            \"head\": {\r\n                \"column\": 1,\r\n                \"row\": 1\r\n            },\r\n            \"direction\": \"Up\"\r\n        },\r\n        {\r\n            \"shipType\": \"Destroyer\",\r\n            \"head\": {\r\n                \"column\": 2,\r\n                \"row\": 1\r\n            },\r\n            \"direction\": \"Up\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/setup/board",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"setup",
+										"board"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ship overlaps with others!!! diagonal",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ritaToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ships\": [\r\n        {\r\n            \"shipType\": \"Submarine\",\r\n            \"head\": {\r\n                \"column\": 1,\r\n                \"row\": 1\r\n            },\r\n            \"direction\": \"Up\"\r\n        },\r\n        {\r\n            \"shipType\": \"Destroyer\",\r\n            \"head\": {\r\n                \"column\": 2,\r\n                \"row\": 1\r\n            },\r\n            \"direction\": \"Up\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/setup/board",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"setup",
+										"board"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "New game (by user not in another game)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{diogoToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"lobbyName\": \"ayyyyyyyy22222\",\r\n   \"rules\": {\r\n       \"columnDim\": \"2\",\r\n       \"rowDim\": 2,\r\n       \"shotsPerRound\": 1,\r\n       \"setupTime\": 5,\r\n       \"timeToMakeMove\": 5\r\n   }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/setup/newgame",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"setup",
+								"newgame"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New game (by user not in another game)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"lobbyName\": \"ayyyyyyyy22222\",\r\n   \"rules\": {\r\n       \"columnDim\": \"2\",\r\n       \"rowDim\": 2,\r\n       \"shotsPerRound\": 1,\r\n       \"setupTime\": 5,\r\n       \"timeToMakeMove\": 5\r\n   }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/setup/newgame",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"setup",
+										"newgame"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Feb 2023 20:30:12 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"gameID\": 8,\n    \"rules\": {\n        \"dimension\": {\n            \"columnDim\": 2,\n            \"rowDim\": 2,\n            \"numOfPositions\": 4\n        },\n        \"shotsPerRound\": 1,\n        \"shipsAllowed\": [\n            {\n                \"shipType\": \"Destroyer\",\n                \"quantityAllowed\": 1\n            }\n        ],\n        \"setupTimeS\": 5,\n        \"roundTimeS\": 5\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Join open game (that is waiting for a guest) (knowing the ID)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{miguelToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"gameID\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/setup/joingame",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"setup",
+								"joingame"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Correct board setup",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{diogoToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ships\": [\r\n        {\r\n            \"shipType\": \"Destroyer\",\r\n            \"head\": {\r\n                \"column\": 1,\r\n                \"row\": 1\r\n            },\r\n            \"direction\": \"Up\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/setup/board",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"setup",
+								"board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Correct board setup 2 host",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{miguelToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ships\": [\r\n        {\r\n            \"shipType\": \"Destroyer\",\r\n            \"head\": {\r\n                \"column\": 2,\r\n                \"row\": 1\r\n            },\r\n            \"direction\": \"Up\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/setup/board",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"setup",
+								"board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Correct board setup (host -> rita)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ritaToken-10}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ships\": [\r\n        {\r\n            \"shipType\": \"Submarine\",\r\n            \"head\": {\r\n                \"column\": 1,\r\n                \"row\": 1\r\n            },\r\n            \"direction\": \"Up\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/setup/board",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"setup",
+								"board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Correct board setup (by guest=filipa)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{filipaToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ships\": [\r\n        {\r\n            \"shipType\": \"Destroyer\",\r\n            \"head\": {\r\n                \"column\": 3,\r\n                \"row\": 3\r\n            },\r\n            \"direction\": \"Up\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/setup/board",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"setup",
+								"board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Open games",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/setup/opengames",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"setup",
+								"opengames"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin DEBUG - get all games info (for debug purposes, only admin can do)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{pauloToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/setup/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"setup",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete lobby",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{carlosToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/setup/lobby",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"setup",
+								"lobby"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GamePlay",
+			"item": [
+				{
+					"name": "Error Requests",
+					"item": [
+						{
+							"name": "QuitGame on invalid game state (like SHIP_SETUP)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{joaoToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9000/play/quit",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"play",
+										"quit"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Shoot (digoo, host)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{joaoToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"position\": {\r\n        \"column\": 1,\r\n        \"row\": 2\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/play/shoot",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"play",
+								"shoot"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Shoot (francisco, guest)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{franciscoToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"position\": {\r\n        \"column\": 2,\r\n        \"row\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/play/shoot",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"play",
+								"shoot"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Shoot (gonçalo, host)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{gonçaloToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"position\": {\r\n        \"column\": 1,\r\n        \"row\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/play/shoot",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"play",
+								"shoot"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Shoot (pedro, guest)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{pedroToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"position\": {\r\n        \"column\": 1,\r\n        \"row\": 2\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/play/shoot",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"play",
+								"shoot"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "QuitGame (on game that is ongoing)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{gonçaloToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/play/quit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"play",
+								"quit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get info of the game user is playing at",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{diogoToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/play/update?gameID=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"play",
+								"update"
+							],
+							"query": [
+								{
+									"key": "gameID",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "FullGameDemonstration",
+			"item": [
+				{
+					"name": "1 - A user creates a game (he cant be in another ongoing game)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{miguelToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"lobbyName\": \"FullGameDemo\",\r\n   \"rules\": {\r\n       \"columnDim\": 4,\r\n       \"rowDim\": 4,\r\n       \"shotsPerRound\": 2,\r\n       \"setupTime\": 5,\r\n       \"timeToMakeMove\": 5\r\n   }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/setup/newgame",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"setup",
+								"newgame"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2 - A user joins a game, which the ID he will know by getting the list of open games",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{alexandreToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"gameID\": 7\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/setup/joingame",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"setup",
+								"joingame"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "The host asks for an update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{miguelToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/play/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"play",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3 - Host sends his board  setup and by default is set has ready",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{miguelToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ships\": [\r\n        {\r\n            \"shipType\": \"Submarine\",\r\n            \"head\": {\r\n                \"column\": 1,\r\n                \"row\": 1\r\n            },\r\n            \"direction\": \"Up\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/setup/board",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"setup",
+								"board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4 - Guest sends his board setup, but says he is not ready",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{alexandreToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ships\": [\r\n        {\r\n            \"shipType\": \"Submarine\",\r\n            \"head\": {\r\n                \"column\": 2,\r\n                \"row\": 2\r\n            },\r\n            \"direction\": \"Up\"\r\n        }\r\n    ],\r\n    \"setReady\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/setup/board",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"setup",
+								"board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "The host asks for an update Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{miguelToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/play/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"play",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5 - Host decided to add one more ship but he cant because he said by default that he was ready",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{miguelToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ships\": [\r\n        {\r\n            \"shipType\": \"Destroyer\",\r\n            \"head\": {\r\n                \"column\": 3,\r\n                \"row\": 1\r\n            },\r\n            \"direction\": \"Up\"\r\n        }\r\n    ],\r\n    \"setReady\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/setup/board",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"setup",
+								"board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6 - Guest decides to add one more ship",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{alexandreToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ships\": [\r\n        {\r\n            \"shipType\": \"Destroyer\",\r\n            \"head\": {\r\n                \"column\": 4,\r\n                \"row\": 2\r\n            },\r\n            \"direction\": \"Up\"\r\n        }\r\n    ],\r\n    \"setReady\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/setup/board",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"setup",
+								"board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "The host asks for an update Copy 2",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{miguelToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/play/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"play",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "The guest asks for an update Copy 3",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{alexandreToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/play/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"play",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7 - Host shoots and hits",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{miguelToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"position\": {\r\n        \"column\": 1,\r\n        \"row\": 2\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/play/shoot",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"play",
+								"shoot"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8 - Guest shoots",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{alexandreToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"position\": {\r\n        \"column\": 1,\r\n        \"row\": 5\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/play/shoot",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"play",
+								"shoot"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "9- Host shoots and misses",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{miguelToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"position\": {\r\n        \"column\": 4,\r\n        \"row\": 4\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/play/shoot",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"play",
+								"shoot"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "10 - Guest shoots and hits",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{alexandreToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"position\": {\r\n        \"column\": 1,\r\n        \"row\": 2\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/play/shoot",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"play",
+								"shoot"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "11 - Host shoots and misses",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{miguelToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"position\": {\r\n        \"column\": 4,\r\n        \"row\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/play/shoot",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"play",
+								"shoot"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "12 - Guest shoots and wins",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{alexandreToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"position\": {\r\n        \"column\": 1,\r\n        \"row\": 3\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/play/shoot",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"play",
+								"shoot"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "The host asks for an update given the id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{miguelToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/play/update/:gameID",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"play",
+								"update",
+								":gameID"
+							],
+							"variable": [
+								{
+									"key": "gameID",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GetServerInfo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/system-info",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"system-info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Home",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "gonçaloToken",
+			"value": "8304c3c9-c4ca-4b1a-848c-74b5f415a62f",
+			"type": "string"
+		},
+		{
+			"key": "pedroToken",
+			"value": "c9c49334-b452-11ec-b909-0242ac120002",
+			"type": "string"
+		},
+		{
+			"key": "pauloToken",
+			"value": "d83a659c-b452-11ec-b909-0242ac120002",
+			"type": "string"
+		},
+		{
+			"key": "chicoToken",
+			"value": "359fcc7e-3c63-4258-8840-30e408494ba0"
+		},
+		{
+			"key": "joaoToken",
+			"value": "4529bd41-9b91-4a53-b191-02750487af86",
+			"type": "string"
+		},
+		{
+			"key": "samuelToken",
+			"value": "d053910e-6628-4608-9750-abc7cef4abb3",
+			"type": "string"
+		},
+		{
+			"key": "carlosToken",
+			"value": "7e5d9c41-de11-4713-aac2-e0ab3d82f85c",
+			"type": "string"
+		},
+		{
+			"key": "franciscoToken",
+			"value": "a5a39533-b186-4fd5-b6cf-29296d6a33f6",
+			"type": "string"
+		},
+		{
+			"key": "rogerioToken",
+			"value": "061bebd1-0d4b-43e4-b2d2-34f1be9e0cab"
+		},
+		{
+			"key": "ritaToken-10",
+			"value": "8053d861-7bb8-497b-be12-da26eaa0d9ba",
+			"type": "string"
+		},
+		{
+			"key": "filipaToken",
+			"value": "2f9266c0-c74e-4fbf-9818-2d7afea356a9",
+			"type": "string"
+		},
+		{
+			"key": "sandraToken",
+			"value": "812c5f8a-19ad-4a60-9e43-712e4e1caadb",
+			"type": "string"
+		},
+		{
+			"key": "joanaToken",
+			"value": "8d3506ef-b773-4f96-9dbc-1c880d0e05d1",
+			"type": "string"
+		},
+		{
+			"key": "miguelToken",
+			"value": "6dd0353d-695e-47e8-9d7f-89e4068cb69a",
+			"type": "string"
+		},
+		{
+			"key": "alexandreToken",
+			"value": "6fe0068f-70ed-4ef5-9be1-b47f461f37f8",
+			"type": "string"
+		},
+		{
+			"key": "diogoToken",
+			"value": "60d77658-05a6-40a4-8502-02b15581cdaf",
+			"type": "string"
+		}
+	]
+}

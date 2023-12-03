@@ -1,0 +1,91 @@
+button { /*Hovering out https://developer.mozilla.org/en-US/docs/Learn/CSS/Howto/Transition_button*/
+    transition: background-color 1s;
+}
+
+.xbutton {
+    /*margin-top: 105px;*/
+    margin: auto;
+    padding: 3px 3px;
+    cursor: pointer;
+    border-radius: 50%; 
+    border: none;
+    width: 30px;
+    height: 30px;
+}
+
+button {
+    background-color: rgb(29, 72, 136);
+    border: none;
+    color: white;
+    padding: 10px 20px 10px 20px;
+    margin: 1%;
+    border: 2px solid rgb(255, 255, 255);
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 30px; /*Using px and % causes diferent results. % affects total roundness*/
+}
+
+button:disabled{
+    background-color: rgb(59, 81, 114);
+    text-decoration: line-through 3px;
+}
+
+button:hover {
+    background-color: #28da90;
+    transition-duration:1s;
+}
+
+button.openGame {
+    width: 300px;
+    min-width: max-content;
+}
+
+/*there can be not spaces between these. This effects buttons whose class is 'login' */
+button.login:hover  { /*https://codyhouse.co/nuggets/css-gradient-borders*/
+    background: linear-gradient(white, white) padding-box, linear-gradient(to right, rgb(0, 0, 97), rgb(0, 89, 255)) border-box;
+    border-radius: 50em;
+    border: 2px solid transparent;
+    color: black;
+    transition: all;
+    transition-duration: 1s;
+}
+
+button.aside {
+    float: right
+}
+
+button.highlighted {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.tabContainer button.square {
+    width: 15%;
+    margin: 5px 0 0 0;
+    border-radius: 0;
+    border-width: 0;
+}
+ 
+.tabContainer button.square.left {
+    border-right: 25px solid black;
+}
+ 
+.tabContainer button.square.right {
+    border-left: 25px solid black;
+}
+ 
+.tabContainer button.square.left.active {
+    background-color: rgb(4, 0, 255);
+    transition-duration: 0;
+    border-right: 0;
+    width: 18%;
+}
+ 
+.tabContainer button.square.right.active {
+    background-color: rgb(4, 0, 255);
+    transition-duration: 0;
+    border-left: 0;
+    width: 18%;
+}
+ 

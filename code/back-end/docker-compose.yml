@@ -1,0 +1,74 @@
+version: '3.3'
+services:
+  postgresdb:
+    container_name: postgresdb 
+    hostname: postgresdb  # To access using pgadmin4 in docker's host machine (your pc) use hostname 'localhost' but use port 5431 !
+    image: postgres:14 #If you dont specify the version it will always use the latest
+    environment:
+        - POSTGRES_USER=postgres # alternative env variables definition sintax
+        - POSTGRES_PASSWORD=MYDB
+        - POSTGRES_DB=postgres2 # I named it this to separate the waters and indicate that this DB is from the inside the container with this Postgresql instance
+        - POSTGRES_HOST_AUTH_METHOD=password # https://www.postgresql.org/docs/9.5/auth-pg-hba-conf.html#:~:text=and%20hostnossl%20records.-,auth%2Dmethod,-Specifies%20the%20authentication
+    ports:
+        - 5431:5432 # External_port : Internal_port https://stackoverflow.com/a/37775826/9375488
+    volumes:
+        - ./docker_pg_database:/var/lib/postgresql/data #creates and stores the postgres DB in the same file path as this file
+        - ./src/main/sql-scripts/everythingScript.sql:/docker-entrypoint-initdb.d/everythingScript.sql # Alternative to this would be have the sql scripts in resources, load them during jdbi Bean execution, read the files, convert to string and try to create the table if they dont exist https://levelup.gitconnected.com/creating-and-filling-a-postgres-db-with-docker-compose-e1607f6f882f        https://stackoverflow.com/a/51759325/9375488
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"] # make docker wait for posgresql to run, before the server runs, or the server will fail the conneciton to the DB, thus switching to memory as the data-source https://stackoverflow.com/questions/35069027/docker-wait-for-postgresql-to-be-running # https://github.com/peter-evans/docker-compose-healthcheck/issues/16    https://stackoverflow.com/a/60194261/9375488
+      interval: 5s 
+      timeout: 50s
+      retries: 10
+
+  # pgadmin-compose: # interesting alternative to access container database. Where you access pg-admin in the form of a local web-app and config the tables. To acess the DB use the hostname/address postgresdb (and port 5432) using the container of the pgadmin which u can use with the browser http://localhost:15433/browser/ See https://onexlab-io.medium.com/docker-compose-postgres-initdb-ba0021deef76
+    # image: dpage/pgadmin4
+    # environment: 
+        # PGADMIN_DEFAULT_EMAIL: "test@gmail.com"
+        # PGADMIN_DEFAULT_PASSWORD: "test"
+    # ports: 
+        # - 15433:80
+    # depends_on: 
+        # - postgresdb
+
+  battle-service-1:
+    image: p4ulor/battle-service #must be unique profile and name to publish publicly on your https://hub.docker.com/ profile. If I didn't give a image name, it would create image battle-service-1 and battle-service-2 (when they're the same, the only thing that varies is the env variables)
+    container_name: battle-service-1
+    hostname: battle-service-1
+    build:
+      context: .
+      dockerfile: ./DockerfilePostgres
+    environment:
+      JDBC_DATABASE_URL: jdbc:postgresql://postgresdb:5432/postgres2?user=postgres&password=MYDB
+      port: 8081 # sets port env variable in the application.properties file -> server.port=${port:9000}
+    ports:
+      - 8081:8081
+    depends_on: 
+      postgresdb:
+        condition: service_healthy #waits for the postgres server to run the initialization scripts (create tables) and be ready. Otherwise the connection will always fail and use memory data
+
+  battle-service-2:
+    image: p4ulor/battle-service
+    container_name: battle-service-2
+    hostname: battle-service-2
+    build:
+      context: .
+      dockerfile: ./DockerfilePostgres
+    environment:
+      JDBC_DATABASE_URL: jdbc:postgresql://postgresdb:5432/postgres2?user=postgres&password=MYDB
+      SERVER_PORT: 8082 #the port used by spring can also be set like this! https://stackoverflow.com/a/67120401/9375488
+    ports:
+      - 8082:8082
+    depends_on: 
+      postgresdb:
+        condition: service_healthy
+
+  nginx: #A router which will balance network load between the 2 battle-service containers
+    container_name: nginx
+    image: nginx
+    ports:
+      - 8080:8080
+    volumes:
+      - ./:/etc/nginx
+    depends_on:
+      - battle-service-1
+      - battle-service-2

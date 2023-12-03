@@ -1,0 +1,1 @@
+## These are batch files (for windows) that are useful for quickly running the server

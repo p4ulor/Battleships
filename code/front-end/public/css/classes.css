@@ -1,0 +1,223 @@
+.overLappingContainer {
+    max-width: fit-content;
+    max-height: fit-content;
+    z-index: 3;
+
+    padding:1%;
+
+    border: 5px solid rgb(19, 17, 17);
+    border-radius: 5%;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: '999'; /*In order to place at the top of other elements*/
+
+    background-color: rgb(15, 77, 170);
+    
+    text-align: center;
+
+    animation: zoomFadeIn 1s ease-in-out;
+}
+
+.overLappingContainer-closed{
+    max-width: fit-content;
+    max-height: fit-content;
+    z-index: 3;
+
+    padding:1%;
+
+    border: 5px solid rgb(19, 17, 17);
+    border-radius: 5%;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: '999'; /*In order to place at the top of other elements*/
+
+    background-color:rgb(19, 102, 226);
+    
+    text-align: center;
+
+    animation: zoomFadeOut 1s ease-in-out;
+}
+
+
+.basicContainer {
+    border: 3px solid transparent;
+    border-radius: 30px;
+    /*the radial gradient is put on top of the linear gradient https://stackoverflow.com/a/53037637/9375488 */
+    background-image: radial-gradient(ellipse at center, rgb(231, 245, 255) 40%, rgb(176, 194, 240) 100%), 
+                      linear-gradient(to bottom right, rgb(0, 5, 70), rgb(0, 68, 255) );
+    background-origin: border-box;
+    background-clip: padding-box, border-box; /*the 1st input of the background will be the true background, the 2nd input will be used as border*/
+    
+    padding: 100px 100px 100px 100px;
+    text-align: center;
+    word-wrap: break-word; /* https://stackoverflow.com/a/12197111/9375488 */
+    margin: 100px 100px 100px 100px;    
+}
+
+.basicContainer h1 {
+    color: black;
+}
+
+.openGames {
+    border: 3px solid transparent;
+    border-radius: 30px;
+    /*the radial gradient is put on top of the linear gradient https://stackoverflow.com/a/53037637/9375488 */
+    background-image: radial-gradient(ellipse at center, rgb(231, 245, 255) 60%, rgb(163, 176, 214) 100%), 
+                      linear-gradient(to bottom right, rgb(0, 5, 70), rgb(0, 68, 255) );
+    background-origin: border-box;
+    background-clip: padding-box, border-box;  /*the 1st input of the background will be the true background, the 2nd input will be used as border*/
+    
+    padding: 100px 100px 100px 100px;
+    margin: 50px 100px 100px 100px;  
+    
+    max-height: 200px;
+    overflow: auto; /*When content goes outside of div, provide scrollbar automatically either vertically or horizontally*/
+}
+
+.openGames ul {
+    /* display: table; */
+    margin: 0 auto;
+    width: max-content;
+}
+
+/*https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-scrollbar https://stackoverflow.com/a/65059212/9375488 */
+.openGames::-webkit-scrollbar { /*global controller*/
+    width: 1em;
+}
+   
+.openGames::-webkit-scrollbar-track { /*the ligther/more transparent zone where the "thumb" can move*/
+    box-shadow: inset  1px 5px 6px rgba(0, 0, 0, 0.329); /* inset puts the shadow inside https://developer.mozilla.org/pt-BR/docs/Web/CSS/box-shadow */
+    border-radius: 10px;
+    margin: 40px 40px;
+}
+   
+.openGames::-webkit-scrollbar-thumb { /*the draggable scrolling element*/
+    background-color: darkgrey;
+    outline: 1px solid rgb(126, 126, 126);
+    border-radius: 10px;
+}
+
+/* .openGames::-webkit-scrollbar-button{
+    background-color: black;
+    border-radius: 20%;
+    max-height: 20px;
+} */
+
+.tabContainer {
+    border: 30px solid transparent;
+    border-radius: 5px;
+    /*the radial gradient is put on top of the linear gradient https://stackoverflow.com/a/53037637/9375488 */
+    background-image: radial-gradient(ellipse at center, rgb(231, 245, 255) 40%, rgb(161, 186, 253) 100%), 
+                      linear-gradient(to bottom right, rgb(0, 5, 70), rgb(0, 68, 255) );
+    background-origin: border-box;
+    background-clip: padding-box, border-box; /*the 1st input of the background will be the true background, the 2nd input will be used as border*/
+    
+    padding-bottom: 30%;
+
+    text-align: center;
+    list-style: decimal inside;
+}
+
+.tabContainer h1 {
+    color: black;
+}
+
+.tabContainer li {
+   /*  width: 100%; */
+}
+
+.tabContainer li:nth-child(n+10) { /* https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child */
+    margin-left:-10px;
+}
+
+.simplerBasicContainer {
+    border: 3px solid black;
+    border-radius: 10px;
+
+    padding: 50px 50px 50px 50px;
+    margin: 50px 50px 50px 50px;   
+    box-sizing: content-box;
+}
+
+.hide {
+    display: none;
+}
+      
+b:hover + .hide {
+    display: block;
+}
+
+.overLappingContainerFixed {
+    position: fixed;
+
+    /* Aligns center */
+    top: 50%; 
+    left: 50%;
+    transform:translate(-50%, -50%);
+
+    padding: 100px 200px 50px 200px;
+
+    border: 3px solid black;
+
+    align-content: center;
+    background-color: rgba(255, 255, 255, 0.445);
+    backdrop-filter: blur(5px);
+}
+
+/* The spinning wheel */
+.overLappingContainerFixed::after{ /*::after here will bascially add this apparently "hidden" element in the DOM https://developer.mozilla.org/en-US/docs/Web/CSS/::after*/
+    content: "😎";
+    justify-content: center;
+    padding: 40px 40px 40px 40px;
+
+    max-width: 80px;
+    max-height: 80px;
+    margin: 80px 80px 80px 80px;
+
+    border: 20px solid white;
+    border-top-color: orange;
+    border-radius: 50%;
+    
+    animation: loading 1s ease infinite; /* 'loading' is defined in fonts-and-animations.css*/
+    display: flex; /*Necessary or the animation will not work properly https://developer.mozilla.org/en-US/docs/Web/CSS/display */
+}
+
+.timer {
+    position: fixed;
+    z-index: 2;
+
+    bottom: 0;
+    right: 0;
+
+    resize: horizontal; /* https://stackoverflow.com/a/11164001/9375488 */
+    overflow: auto;
+
+    min-height: fit-content;
+    min-width: 30px;
+    max-width: 50%;
+
+    padding: 50px 50px 50px 50px;
+
+    border: 3px solid black;
+
+    align-content: center;
+    background-color: rgba(255, 255, 255, 0.445);
+    backdrop-filter: blur(5px);
+}
+
+.timer::after {
+    z-index: 2;
+    content: 'Open';
+    background-color: grey;
+    position: absolute;
+    top: 30%;
+    left: 0;
+    width: 15px;
+    cursor: ew-resize;
+}

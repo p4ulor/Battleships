@@ -1,0 +1,123 @@
+@import url(./fonts-and-animations.css);
+@import url(./classes.css);
+@import url(./buttons.css);
+@import url(./inputs.css);
+@import url(./game-and-draggables.css);
+
+* { 
+    font-family: spotify;
+    font-size: large;
+}
+
+body {
+    margin: 0; /*disables a default body padding at the top and sides*/
+    /* background: linear-gradient(0deg, #366088,#1f3952));  */ /*dont change values or it gets ugly*/
+    background: radial-gradient(at top, #3c6892,#1f3952);
+    scroll-behavior: smooth; /*apparently not working in my browser*/
+}
+
+#mainNav {
+    /* background: linear-gradient(to left top, rgba(72, 255, 0, 0), rgba(255, 0, 0, 0.527));  *//*https://developer.mozilla.org/en-US/docs/Web/CSS/gradient    https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient */    
+    position: sticky; /*Makes so the bar continues showing at the top when scrolling down*/
+    top: 0px; /*neccesary for the sticky to work, indicates the gap size at the top*/
+    transition: top 3s  /* ease-in 1s */; /* Transition effect when sliding down (and up). More specifically, when the "top" property is altered, 5s duration, 1s delay */
+    z-index: 3; /*Fixes backdrop-filter blurring nav bar when scrolling down, by putting this element above the blur*/
+    display: flex;
+    background-color: #175cac;
+    background-image: -webkit-linear-gradient(left, transparent 0%,rgba(255, 255, 255, 0.493) 50%, transparent 100%);
+    /* background-image: radial-gradient(farthest-side at 50%, rgb(35, 10, 255), rgb(0, 0, 0)); */ /*dark mode type navigation*/
+    border-bottom: 2px solid white;
+}
+
+#mainNav ul { /* UL -> Unordered List */
+    margin: auto;
+    list-style: none;/*  removes bullet point/circles */
+}
+
+#mainNav li { /* LI -> List Item */
+    display: inline;
+    padding-inline: 40px; /*Using something like 10% can also work, but when adding more elements it can not work quite well*/
+    transition: background-color 1s; /*Hovering out*/
+}
+
+#mainNav li:hover {
+    background-color: #000000;
+    transition: background-color 1s; /*Hovering in*/
+}
+
+#mainNav a { /* A -> Anchor (link) */
+    color: rgb(255, 255, 255); /*Text color*/
+    text-decoration: none; /*removes default underline of links*/
+    font-size: 18px;
+}
+
+#homeImg {
+    /* background-color: #8b6b00; */
+    /* background-image:linear-gradient( */ /*https://developer.mozilla.org/en-US/docs/Web/CSS/background-image#syntax*/
+        /* 0deg, */
+        /* rgba(0,0,0,0) 90%, rgba(23,92,172,1) 100% */ /*https://cssgradient.io/*/
+    /* ), url('../imgs/home.png'); */
+
+   /*makes small radial at the top of the image  */
+    background-image:radial-gradient(ellipse at top,rgb(252, 252, 252)  0%,rgba(125,185,232,0) 25%)
+    , url('../imgs/home.png');
+    background-size: cover;   /*makes sure entire image is shown, side to side, by zooming in*/
+    background-position: center center; /*makes sure the positioning is at the center*/
+    background-repeat: no-repeat center top;
+    /* background-attachment: fixed; */ /* Makes the image stay in place on scroll */
+    min-height: 200px;
+    text-align: center;
+    padding: 70px 0px 70px 0px;
+    border-bottom: 4px solid black;
+}
+
+#homeImg h1 { /*affects headers of type/size1 that are sons/inside attributes of class homeImg*/
+    font-family: 'Major Mono Display'; /*Imported font from google*/
+    font-weight: 400;
+    font-size: 100px;
+    color: white;
+    text-shadow: /*https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow#syntax*/
+    0 0 5px #fff,
+    0 0 20px #228dff,
+    0 0 35px #228dff,
+    0 0 40px #228dff;
+    /* background-image: radial-gradient(circle at center, rgba(10, 96, 255, 0.568) 30%, rgba(0, 0, 0, 0) 70%); */  /*circle at center  === farthest-side at 50% */
+    background: radial-gradient(ellipse at center 75%,rgba(124, 174, 207, 0.92) 5%,rgba(125,185,232,0) 40%);
+    border:10px solid white ;
+    backdrop-filter: blur(5px); /*https://stackoverflow.com/a/40761151/9375488*/
+    line-height: 1.6em; /* 'em' is a relative unit*/
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+h1 {
+    font-family: 'spotify';
+    font-weight: 400;
+    color: white;
+    font-size: 50px;
+}
+
+h2 {
+    font-family: 'spotify';
+    font-weight: 400;
+    color: black;
+    font-size: 30px;
+}
+
+table {
+    margin: 0 auto; /* == margin: 0 auto 0 auto */
+    border: solid 3px black;
+    border-spacing: 0;
+}
+
+th {
+    border: solid 1px black;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+td {
+    border: solid 1px black;
+    padding-left: 10px;
+    padding-right: 10px;
+}

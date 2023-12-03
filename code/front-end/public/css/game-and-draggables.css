@@ -1,0 +1,103 @@
+div.simplerBasicContainer2 {
+    position: relative;
+/*     max-width: auto;
+    max-height: auto; */
+    max-height: "200px";
+
+    border: 3px solid black;
+    border-radius: 10px;
+
+    padding: 50px 50px 50px 50px;
+    margin: 50px 50px 50px 50px;   
+    box-sizing: content-box;
+    overflow: auto;
+    align-content: center;
+}
+
+img.ship {
+    height: 50px; 
+    /* width: 206px; */  /* This the width for a shipsize of dim=4 (50px*4) + 2* 3(inner lines occupied), extra px's will depend on ship size... */
+    /* width = 50px*shipSize + 2*(shipSize -1). This last sum covers the space leftout from the inner borders (that would cross the inside of the img). See shipList() in SetupShips.tsx*/
+
+    /* object-fit: cover ; */ /* zoom in, keeping  the ratio */
+    object-fit: fill;  /* fits completely, scaling the ratio */
+    /* object-fit: contain; */ /*zooms out, keeping the ratio */
+
+    border: 1px solid black;
+    background-color: rgb(0, 30, 129);
+    /* transform: rotate(90deg); */
+    /* filter: opacity(0.5) drop-shadow(0 0 0 red); */ /* Puts color over entire ship */
+}
+
+div.square {
+    height: 50px; width: 50px;
+    border: 1px solid black;
+}
+
+div.blueSquare {
+    height: 50px; width: 50px;
+    border: 1px solid black;
+    background-color: rgb(0, 33, 143);;
+}
+
+div.square:hover{
+    background-color: grey;
+}
+
+div.square.selected {
+    background-color: black;
+}
+
+div.hit {
+    height: 50px; width: 50px;
+    border: 1px solid black;
+    background-color: green;
+}
+
+div.miss {
+    height: 50px; width: 50px;
+    border: 1px solid black;
+    background-color: rgb(0, 43, 185);
+}
+
+.noBoarder{ /* This class will be used by squares that are being used by an image*/
+    height: 50px; width: 50px;
+    border-width: 0 0 0 0;
+    margin-right: 2px; /* margin will depend on ship size... 2*3=6px*/
+}
+
+div.damaged{ /* This class will be used by squares that are being used by an image*/
+    height: 50px; width: 50px;
+    padding-right: 2px; /* padding will depend on ship size... 2*3=6px*/
+    background-color: rgba(255, 0, 0, 0.562);
+    /* filter: opacity(0.5) drop-shadow(0 0 0 red); */
+}
+
+div.damagedTail {
+    height: 50px; width: 50px;
+    padding-right: 2px; /* padding will depend on ship size... 2*3=6px*/
+    background-color: rgba(255, 0, 0, 0.562);
+    position: relative;
+    margin-top: -56px;
+}
+
+div.row {
+    /* Play around with the others */
+    /* display: inline-block; */
+    /* display: inline-flex; */
+    /* display: inline-grid; */
+    display: flex;
+    justify-content: center;
+}
+
+.draggable {
+    /* padding: 11px;  *//* magic number... */
+    /* border: 5px solid black; */
+    cursor: grab;
+}
+  
+.dragging { /* we could have '.draggable.dragging {' to enforce that this can only be used with a element that has the class draggable */
+    opacity: .5;
+    cursor: grabbing;
+    border: 5px solid rgb(255, 171, 45);
+}

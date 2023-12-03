@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Battleship</title>
+        <!-- <link rel="stylesheet" href="styles.css"> --> <!-- We cant do this. webpack will not preperly configure this. individual components and .js files should reference individual .css files like-> import '../public/styles.css'. See notes in readme.-->
+        <link rel="icon" href="/favicon.ico"> <!-- The / should be present or it wont show in sub routes -->
+    </head>
+    <body>
+        <!-- <h1>Welcome</h1> -->
+        <div id="root" />
+        <script src="/bundle.js"></script> <!-- adding / fixes subroutes not being accessible -->
+    </body>
+</html>

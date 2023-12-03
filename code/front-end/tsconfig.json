@@ -1,0 +1,15 @@
+// https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
+// https://github.com/isel-leic-daw/2122v-public/blob/main/code/js/first/tsconfig.json
+// https://stackoverflow.com/questions/37413533/what-is-the-purpose-of-tsconfig-json
+{
+    "compilerOptions": {
+      "module": "es6",
+      "noImplicitAny": true,
+      //"removeComments": true,
+      "outDir": "./dist/",
+      "target": "es5", //ECMAScript 1 - 6 is fully supported in all modern browsers.
+      "jsx": "react",
+      "allowJs": true,
+      "moduleResolution": "node",
+    }
+}
