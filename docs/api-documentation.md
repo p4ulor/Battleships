@@ -1,4 +1,5 @@
 # API Documentation
+Simpler documentation that was allowed to do at the time instead of using [Swagger UI](https://swagger.io/tools/swagger-ui/), like it was done for the *Software Lab* in the [Sports Manager](https://github.com/p4ulor/Sports-Manager) project
 
 ## GET - /system-info
 ```
@@ -7,20 +8,20 @@ ServerInfo(version=0.0.1, author=Author(name=Paulo Rosa, email=a44873@alunos.ise
 ___
 # /users
 ## POST - /users/newuser
-## Request
+### Request
 ```json
 "name": "newusername",
 "email": "newuser@gmail.com",
 "password": "newpassword"
 ```
 
-## Response
+### Response
 ```json
 "token": "061bebd1-0d4b-43e4-b2d2-34f1be9e0cab"
 ```
 ___
 ## GET - /users/{id}
-## Response
+### Response
 ```json
 "id": 3,
 "name": "user",
@@ -29,13 +30,13 @@ ___
 ```
 ___
 ## POST - /users/login
-## Request
+### Request
 ```json
 "emailOrName": "newusername",
 "password": "newpassword"
 ```
 
-## Response
+### Response
 ```json
 "token": "061bebd1-0d4b-43e4-b2d2-34f1be9e0cab"
 ```
@@ -43,7 +44,7 @@ ___
 ## GET - /users/ranking/{scheme}
 - If {scheme}==played, orders players by games played, else orders by wins
 - Accepts {paging} and {limit} query params
-## Response
+### Response
 ```json
 [
     {
@@ -71,7 +72,7 @@ ___
 ## POST - /setup/newgame
 - Requires valid Bearer token
 - Lobby name is the only mandatory param. The others can be null and the server will use default values. But if the values the user inserted are wrong, there will be a reply indicating that it's a bad request
-## Request
+### Request
 ```json
  "lobbyName": "newlobby",
    "rules": {
@@ -94,7 +95,7 @@ ___
    }
 ```
 
-## Response
+### Response
 - The value of the dimension has more priority than the sizes of the ships
 ```json
 "gameID": 1,
@@ -119,7 +120,7 @@ ___
 
 ## GET - /setup/opengames
 - Accepts {paging} and {limit} query params
-## Response
+### Response
 ```json
 [
     {
@@ -132,12 +133,12 @@ ___
 
 ## PUT - /setup/joingame
 - Requires Bearer token
-## Request
+### Request
 ```json
 "gameID": 1
 ```
 
-## Response 
+### Response 
 ```json
 "opponentName": "host name",
 "rules": {
@@ -162,7 +163,7 @@ ___
 - Requires token
 - Will search for a on going game the user is on
 - If setReady is not present it will be true by default
-## Request
+### Request
 ```json
 "ships": [
         {
@@ -177,7 +178,7 @@ ___
 "setReady": = true
 ```
 
-## Response
+### Response
 
 ```json
 "canAddMore": false,
@@ -209,7 +210,7 @@ ___
 ___
 # /play
 ## POST /play/shoot
-## Request 
+### Request 
 ```json
 "position": {
         "column": 1,
@@ -217,8 +218,7 @@ ___
     }
 ```
 
-## Response
-
+### Response
 ```json
 "position": {
         "column": 1,
@@ -231,7 +231,7 @@ ___
 - Requires Bearer token
 - Gets data the user is authorized to see about the game he's playing at
 - Used when a guest joins, and the host user can know the apponent's name. Also, during gameplay, each one can know the changes of states of the game and the result of the apponent's on each other ships
-## Response
+### Response
 ```json
  "opponentName": "miguel",
     "gameStatus": "GUEST_TURN",
@@ -262,7 +262,7 @@ ___
 ___
 ## GET - /play/update?gameID=1
 - Gets game that is finished, specially meant for the players involved
-## Response
+### Response
 ```json
 "id": 1,
 "lobbyName": "in da game",

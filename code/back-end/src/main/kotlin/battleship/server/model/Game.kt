@@ -203,7 +203,7 @@ data class Game(
 class Rules( //this data will not change after the game is created!
     val dimension: Dimension = Dimension(defaultBoardDimension, defaultBoardDimension),
     val shotsPerRound: Int = defaultShotsPerRound, //note that this is used to decide if it's time to switch turns or not
-    val shipsAllowed: MutableList<ShipsTypesAndQuantity> = defaultShipTypes.toMutableList(), // .toMutableList() -> creates copy
+    val shipsAllowed: MutableList<ShipsTypesAndQuantity> = defaultShipTypes.toMutableList(), // .toMutableList() -> creates a copy
     val setupTimeS: Int = defaultDurationS,
     val roundTimeS: Int = defaultDurationS,
     private val doAllShipTypesNeedToBeInserted: Boolean = defaultDoAllShipTypesNeedToBeInserted

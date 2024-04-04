@@ -1,1 +1,1 @@
-rootProject.name = "battleship-server"
+rootProject.name = "battleships-server"

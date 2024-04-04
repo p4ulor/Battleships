@@ -1,4 +1,5 @@
 ## Open this folder using IntelliJ
+The `.run` folder contains the "Run/Debug" configurations that I saved as being part of the project. It's interpreted by IntelliJ. One config runs the server using the memory as the DB, the other uses Posgresql as the DB.
 # Contents
 - .run -> Some run configurations (for IntelliJ)
 - gradle/wrapper -> Info about gradle version to be used during build

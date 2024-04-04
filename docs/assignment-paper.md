@@ -1,3 +1,4 @@
+# Phase 1 (back-end)
 ## Goal
 The goal of this project is the development of a Web-based system allowing multiple players to play the [Battleship game](https://en.wikipedia.org/wiki/Battleship_(game)).
 
@@ -46,4 +47,24 @@ The delivery should also contain:
 
 The HTTP API documentation required for a frontend client application to use this API. This documentation should not include any information about the internal backend implementation.
 A single technical document, with the backend internal software organization, the data model, and the main implementation challenges.
-Both these two documents should be linked from the README.md file, located in the repositories root directory.
+Both these two documents should be linked from the README.md file, located in the repositories root directory
+
+
+# Phase 2 (front-end)
+## Goals for the second phase
+The goal of the project's second phase is the creation of a browser-based application front-end application, exposing a user-interface for all the Battleship game functionalities.
+This application should use the HTTP API developed on the first phase, and be based on the single page application (SPA) architecture:
+
+- The application is composed by a static HTML file, a set of JavaScript files, and other resources such as images and stylesheets.
+- The non-static UI interface is generated on the browser-side, based on interactions with the HTTP API developed on the first phase.
+
+If required, this second phase can include changes to the Backend Service and its HTTP API.
+
+Delivery
+The complete project should be delivered until January 3 2023, via the creation of the 1.0.0 tag on the group's repository. Any change after that data should result in the creation of a patch tag (e.g. 1.0.1).
+
+The complete system, backend service and front-end static resource server, should be executable via the docker-compose system without any other dependencies.
+
+In addition to the first phase documentation requirements, the final delivery should also contain:
+
+- A single technical document, with the frontend application internal software organization, and the main implementation challenges.

@@ -35,7 +35,7 @@ import javax.servlet.http.HttpServletResponse
 
 @SpringBootApplication(
     exclude = [
-        SecurityAutoConfiguration::class, //desliga pagina de login estranha
+        SecurityAutoConfiguration::class, //turns off weird login page
         /*DataSourceAutoConfiguration::class*/ //Putting this solved error 'Failed to configure a DataSource'. Turns out it was caused by havint the dependency 'spring-boot-starter-jdbc' https://stackoverflow.com/q/51221777/9375488    https://stackoverflow.com/q/28042426/9375488     https://www.baeldung.com/spring-boot-failed-to-configure-data-source https://javarevisited.blogspot.com/2019/04/spring-boot-error-error-creating-bean.html
     ],
     //scanBasePackages = ["battleship.server.controllers"] //Tells spring what packages to look for annonations I think
@@ -44,7 +44,7 @@ import javax.servlet.http.HttpServletResponse
 class BattleshipServerApplication {
 
     //https://docs.spring.io/spring-javaconfig/docs/1.0.0.M4/reference/html/ch02s02.html
-    @Bean //we can put (name= ["jdbi"]) or  name= arrayOf("jdbi") to say the name of the @Bean, by default it will be the name of the methid. If some other parameter has the same name and is of the same type of the @Bean, the injection will be successful
+    @Bean //we can put (name= ["jdbi"]) or  name= arrayOf("jdbi") to say the name of the @Bean, by default it will be the name of the method. If some other parameter has the same name and is of the same type of the @Bean, the injection will be successful
     fun jdbi() : Jdbi {
         pl("JDBI bean started")
         if(dataIsInMemory) return Jdbi.create("")
@@ -77,6 +77,7 @@ class BattleshipServerApplication {
             installPlugin(PostgresPlugin()) //https://jdbi.org/#_postgresql
             installPlugin(SqlObjectPlugin()) //https://jdbi.org/#_declarative_api
         }
+
         try{
             jdbi.useHandle<Exception> {
                 pl("Username acessing DB ->"+it.connection.metaData.userName.toString())
@@ -88,7 +89,7 @@ class BattleshipServerApplication {
             }
         } catch (e: Exception) { pl("DB analysis exception -> $e")}
 
-        //I choose to leave the database creation during docker's container's creation, ( at least for now because I want to try here too. See docker-compose.yml for more info
+        //I choose to leave the database creation on docker's container's creation (at least for now because I want to try here too. See docker-compose.yml for more info
 
         return jdbi
     }
@@ -193,7 +194,10 @@ var yourJDBC_URL = "jdbc:postgresql://localhost/postgres?user=postgres&password=
  The PostgreSQL JDBC Driver allows Java programs to connect to a PostgreSQL database using standard, database independent Java code. pgJDBC is an open source JDBC driver written in Pure Java (Type 4), and communicates in the PostgreSQL native network protocol
  */
 
-var useEnvironmentVariable = false //if false, it will use yourJDBCURL
+/**
+ * //if false, it will use [yourJDBCURL]
+ */
+var useEnvironmentVariable = false
 
 fun main(args: Array<String>) {
     pl("main started")

@@ -1,5 +1,8 @@
 This document describes the various errors that can be returned from an HTTP request to my API.
 
+This was part of the subject's contents:
+- https://labs.pedrofelix.org/notes/http/how-to-fail
+
 # Request-Error
 
 ## NotFoundException

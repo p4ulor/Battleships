@@ -1,1 +1,0 @@
-java -jar back-end/build/libs/battleship-server-0.0.1-SNAPSHOT.jar --server-port=9000
