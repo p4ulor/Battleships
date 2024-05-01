@@ -6,26 +6,24 @@ import battleship.server.model.MIN_BOARD_SIZE
 import battleship.server.model.MIN_DURATION_S
 import battleship.server.utils.*
 import org.springframework.web.server.ResponseStatusException
-import javax.servlet.http.HttpServletResponse
 import kotlin.reflect.KClass
 import kotlin.reflect.full.primaryConstructor
-import kotlin.reflect.typeOf
 
-/* Utility method for easier communication controllers
+/* Utility method for easier communication with controllers
  Used when the call to services has chances to returns various types of objects from enum Status
  Doing it like this will avoid writing a bunch of manual if's in the controllers to check what Status was returned from services!!!!!!
  services returned. Since an enum Status has a HTTP exception associated to it, we just access it and call it
  */
 internal inline fun <reified T> processResult(res: RequestResult, onSuccess: () -> Any = { -> true }) : T { //https://stackoverflow.com/a/72118752/9375488
-    if(res.errorStatus==null){
+    if(res.error==null){
         onSuccess()
         if(res.data!=null) return res.data as T
         else return "" as T
     }
     else {
-        val errorMessage = StringBuilder(res.errorStatus.msg)
+        val errorMessage = StringBuilder(res.error.msg)
         if(res.data!=null) errorMessage.append(". "+res.data.toString()) //DO NOT REMOVE .toString() bellow this line!
-        throw res.errorStatus.exception.primaryConstructor?.call(errorMessage.toString())!! //calls my HTTP Exceptions
+        throw res.error.exception.primaryConstructor?.call(errorMessage.toString())!! //calls my HTTP Exceptions
     }
 }
 
@@ -36,19 +34,18 @@ fun acessStorage (action: () -> RequestResult) : RequestResult {
 }
 
 //Controller - Services - Data Bridge
-
 data class RequestResult(
     val data: Any? = null, //valid data. If errorStatus is not null, this field can have extra info about the error which must be a string
-    val errorStatus: Status? = null //being null implies there's no error
+    val error: Errors? = null //being null implies there's no error
 ) {
     init {
-        if(errorStatus!=null && data!=null){
+        if(error!=null && data!=null){
             if(data !is String) throw IllegalStateException("A RequestResult must have data of type string when there's an errorStatus")
         }
     }
 }
 
-enum class Status(val msg: String, val exception: KClass<out ResponseStatusException>){
+enum class Errors(val msg: String, val exception: KClass<out ResponseStatusException>){
     StorageError("Error in storage", NotFoundException::class), //General storage error, it's more likely a not found than a bad request
 
     //Users

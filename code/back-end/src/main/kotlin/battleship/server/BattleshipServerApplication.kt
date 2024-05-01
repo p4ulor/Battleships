@@ -43,8 +43,14 @@ import javax.servlet.http.HttpServletResponse
 
 class BattleshipServerApplication {
 
-    //https://docs.spring.io/spring-javaconfig/docs/1.0.0.M4/reference/html/ch02s02.html
-    @Bean //we can put (name= ["jdbi"]) or  name= arrayOf("jdbi") to say the name of the @Bean, by default it will be the name of the method. If some other parameter has the same name and is of the same type of the @Bean, the injection will be successful
+    /**
+     * A method annotated with @Bean defines a method that should return an object. This object is injected into
+     * fields that have the same name and type as the Bean, and these fields should belong to classes with other Spring
+     * annotations, like @Component per example
+     * If some other parameter has the same name and is of the same type of the @Bean, the injection will be successful
+     * https://docs.spring.io/spring-javaconfig/docs/1.0.0.M4/reference/html/ch02s02.html
+     */
+    @Bean //we can call this annotation with (name= ["jdbi"]) or  (name= arrayOf("jdbi")) to say the name of the @Bean by default it will be the name of the method
     fun jdbi() : Jdbi {
         pl("JDBI bean started")
         if(dataIsInMemory) return Jdbi.create("")
@@ -150,7 +156,7 @@ class BattleshipServerApplication {
     fun configHistoryCallBack() : WebMvcConfigurer { //https://steve-mu.medium.com/implement-history-fall-back-in-spring-boot-dd7636f75dea
         return object : WebMvcConfigurer {
             override fun addViewControllers(registry: ViewControllerRegistry) {
-                //If doesn't contain /api/, forward to index.html
+                //If the URL doesn't contain /api/, forward to index.html
                 registry.addViewController("^((?!/api\\/).)*\$").setViewName("forward:/index.html")
 
                 // Matches all routes up that have exactly 1 route level

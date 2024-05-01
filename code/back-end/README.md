@@ -1,3 +1,9 @@
+# back-end
+<center>
+    <img class="center" style="max-width: 400px; margin: auto auto;" src="../../docs/imgs/cover_back-end.jpeg" />
+</center>
+
+
 ## Open this folder using IntelliJ
 The `.run` folder contains the "Run/Debug" configurations that I saved as being part of the project. It's interpreted by IntelliJ. One config runs the server using the memory as the DB, the other uses Posgresql as the DB.
 # Contents

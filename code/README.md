@@ -1,4 +1,9 @@
-# Here are some useful commands to quickly run the server
+## back-end & front-end technical docs
+To not pollute the *docs/* with too many technical details and notes I put some in
+- [back-end.README.md](./back-end/README.md)
+- [front-end/README.md](./front-end/README.md)
+
+## Commands to quickly run the server
 
 ## 1. Build the .jar (artifact)
 ```bash

@@ -37,7 +37,7 @@ The following diagram is the Entity-Relationship model for the information manag
 ![](./imgs/Entity-Relation-Diagram_LucidChart.png)
 
 # Project structure
-![](./imgs/projectStructure.png)
+![](./imgs/back-end-src.png)
 
 ## **How and where command parameters are validated**
 - Many validations are done at the level of the request body by using java and spring annonations. There are always informational messages about the reasons for each error.

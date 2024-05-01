@@ -9,10 +9,7 @@ import battleship.server.utils.TimeInterval
 // Ordered preferably by CRUD - Create, Read, Update, Delete, ...
 // Parameter orders: request (for PUT's and POST's), path-param, paging (for GETS), ...
 
-interface InfoData { //Hmmmm...
-   fun getSystemInfo() : ServerInfo
-}
-/*
+/**
 There will be nullable returns for cases when something is not found
 Note, since DB already checks for constraints like email and user already in use.
 We aren't going to have methods that consult the DB to check that. That would cause a double check...
@@ -28,7 +25,7 @@ interface UserData {
     fun updateStats(id: Int, playCount: Int, winCount: Int) //receives what increments are to be done to the playCount and winCount
 }
 
-interface GameData { //TODO CHECK IM NOT UPDATING THE RULES?
+interface GameData {
     //GameSetup methods:
     fun createGame(lobbyName: String, hostID: Int, rules: Rules) : Int //returns gameID
     fun joinGame(guestID: Int, gameID: Int, currentSetupTime: TimeInterval)

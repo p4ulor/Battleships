@@ -1,7 +1,7 @@
 package battleship.server.storage.db
 
 import battleship.server.model.*
-import battleship.server.services.Status
+import battleship.server.services.Errors
 import battleship.server.storage.GameData
 import battleship.server.storage.db.daos.DB_Game
 import battleship.server.storage.db.daos.GameDAO
@@ -18,7 +18,7 @@ class GamePostgres(private val jdbi: Jdbi) : GameData {
         val gameToAdd = DB_Game(lobbyName, hostID, rules = rules, TimeInterval(Duration.ofSeconds(rules.setupTimeS.toLong())), TimeInterval(Duration.ofSeconds(rules.roundTimeS.toLong())))
         var newGameID: Int = -1
         try{ newGameID = jdbi.onDemand(GameDAO::class).createGame(gameToAdd) } //When using jdbi.onDemand(___:.class) -> In cases when there's an error, neither at run time the error will be thrown, and the debugger will say this method wasn't executed. You'll have to remove the call from try catch to see whats happening
-        catch (e: Exception){ throw StorageException(Status.StorageError, e.toString()) }
+        catch (e: Exception){ throw StorageException(Errors.StorageError, e.toString()) }
         pl("New game ID -> $newGameID")
         return newGameID
     }
@@ -38,7 +38,7 @@ class GamePostgres(private val jdbi: Jdbi) : GameData {
                 query.execute()
             }
         }
-        catch (e: Exception){ throw StorageException(Status.StorageError, e.toString()) }
+        catch (e: Exception){ throw StorageException(Errors.StorageError, e.toString()) }
     }
 
     override fun setupBoard(gameID: Int, isUserHost: Boolean, ships: MutableList<Ship>, setAsReady: Boolean, gameStatus: GameStatus, currentSetupTime: TimeInterval, currentRoundTime: TimeInterval) {
@@ -64,12 +64,12 @@ class GamePostgres(private val jdbi: Jdbi) : GameData {
                     .bind("gameID", gameID)
                 query.execute()
             }
-        } catch (e: Exception){ throw StorageException(Status.StorageError, e.toString()) }
+        } catch (e: Exception){ throw StorageException(Errors.StorageError, e.toString()) }
     }
 
     override fun getOpenGames(paging: Paging): List<GamesList> {
         val list = try{ jdbi.onDemand(GameDAO::class).getOpenGames(paging) }
-        catch (e: Exception){ throw StorageException(Status.StorageError, e.toString()) }
+        catch (e: Exception){ throw StorageException(Errors.StorageError, e.toString()) }
         return list
     }
 
@@ -93,13 +93,13 @@ class GamePostgres(private val jdbi: Jdbi) : GameData {
                     .bind("gameID", gameID)
                 query.execute()
             }
-        } catch (e: Exception){ throw StorageException(Status.StorageError, e.toString()) }
+        } catch (e: Exception){ throw StorageException(Errors.StorageError, e.toString()) }
     }
 
     override fun setGameStatus(gameID: Int, gameStatus: GameStatus) {
         require(gameStatus.isAFinaleState()) { "Setting a game state through these means requires a finalizing game state" }
         try{ jdbi.onDemand(GameDAO::class).setWinner(gameID, gameStatus.name) }
-        catch (e: Exception){ throw StorageException(Status.StorageError, e.toString()) }
+        catch (e: Exception){ throw StorageException(Errors.StorageError, e.toString()) }
     }
 
     override fun getGame(gameID: Int): Game? {
@@ -107,7 +107,7 @@ class GamePostgres(private val jdbi: Jdbi) : GameData {
             val db_Game = jdbi.onDemand(GameDAO::class).getGame(gameID) ?: return null
             DB_Game.DB_GameToGame(db_Game)
         }
-        catch (e: Exception){ throw StorageException(Status.StorageError, e.toString()) }
+        catch (e: Exception){ throw StorageException(Errors.StorageError, e.toString()) }
     }
 
     override fun findGameWithUser(userID: Int, anyStatesToLookFor: List<GameStatus>): Game? {
@@ -115,12 +115,12 @@ class GamePostgres(private val jdbi: Jdbi) : GameData {
             val db_Game = jdbi.onDemand(GameDAO::class).findGameWithUser(userID, anyStatesToLookFor.map { it.name }) ?: return null
             DB_Game.DB_GameToGame(db_Game)
         }
-        catch (e: Exception){ throw StorageException(Status.StorageError, e.toString()) }
+        catch (e: Exception){ throw StorageException(Errors.StorageError, e.toString()) }
     }
 
     override fun deleteLobby(gameID: Int) {
         if(getGame(gameID)==null) throw NotFoundException("Game with id=$gameID not found")
         return try{ jdbi.onDemand(GameDAO::class).deleteGame(gameID) }
-        catch (e: Exception){ throw StorageException(Status.StorageError, e.toString()) }
+        catch (e: Exception){ throw StorageException(Errors.StorageError, e.toString()) }
     }
 }

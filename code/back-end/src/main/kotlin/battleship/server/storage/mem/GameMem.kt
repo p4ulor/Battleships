@@ -1,7 +1,7 @@
 package battleship.server.storage.mem
 
 import battleship.server.model.*
-import battleship.server.services.Status
+import battleship.server.services.Errors
 import battleship.server.storage.GameData
 import battleship.server.storage.db.daos.GamesList
 import battleship.server.utils.*
@@ -24,7 +24,7 @@ class GameMem : GameData {
     }
 
     override fun setupBoard(gameID: Int, isUserHost: Boolean, ships: MutableList<Ship>, setAsReady: Boolean, gameStatus: GameStatus, currentSetupTime: TimeInterval, currentRoundTime: TimeInterval) {
-        val game = games.find { it.id==gameID} ?: throw StorageException(Status.GameDoesntExist)
+        val game = games.find { it.id==gameID} ?: throw StorageException(Errors.GameDoesntExist)
         if(isUserHost){
             game.hostShips = ships
             game.isHostReady = setAsReady
@@ -45,7 +45,7 @@ class GameMem : GameData {
     }
 
     override fun storeUserRound(gameID: Int, nextRoundStatus: GameStatus, isHost: Boolean, userShots: MutableList<Shot>, enemyShips: MutableList<Ship>, currentRoundTime: TimeInterval) {
-        val game = games.find { it.id==gameID } ?: throw StorageException(Status.GameDoesntExist)
+        val game = games.find { it.id==gameID } ?: throw StorageException(Errors.GameDoesntExist)
         game.gameStatus = nextRoundStatus
         if(isHost){
             game.hostShots = userShots //or use replaceAll?

@@ -3,15 +3,15 @@ package battleship.server.storage.mem;
 import battleship.server.model.NewUser
 import battleship.server.model.Player
 import battleship.server.model.User
-import battleship.server.services.Status
+import battleship.server.services.Errors
 import battleship.server.storage.UserData
 import battleship.server.utils.Paging
 import battleship.server.utils.StorageException
 
 class UserMem : UserData {
     override fun createUser(u: NewUser) : Int {
-        if(isEmailInUse(u.email!!)) throw StorageException(Status.EmailInUse)
-        if(isNameInUse(u.name!!)) throw StorageException(Status.UserNameInUse)
+        if(isEmailInUse(u.email!!)) throw StorageException(Errors.EmailInUse)
+        if(isNameInUse(u.name!!)) throw StorageException(Errors.UserNameInUse)
         val nextUserID = nextUserID()
         users.add(User(nextUserID, u.name, u.email, u.hashedPassword, u.token))
         return nextUserID
@@ -19,7 +19,7 @@ class UserMem : UserData {
 
     override fun loginUser(emailOrName: String, withEmail: Boolean) : Triple<String, String, Int> {
         val user = if(withEmail) users.find { it.email == emailOrName } else users.find { it.name == emailOrName }
-        if(user==null) throw StorageException(Status.UserNotFound, "Failed finding user using $emailOrName")
+        if(user==null) throw StorageException(Errors.UserNotFound, "Failed finding user using $emailOrName")
         return Triple(user.token, user.hashedPassword, user.id)
     }
 
@@ -36,7 +36,7 @@ class UserMem : UserData {
     }
 
     override fun updateStats(id: Int, playCount: Int, winCount: Int) {
-        val user = users.find { it.id==id } ?: throw StorageException(Status.UserNotFound)
+        val user = users.find { it.id==id } ?: throw StorageException(Errors.UserNotFound)
         user.playCount += playCount
         user.winCount += winCount
     }

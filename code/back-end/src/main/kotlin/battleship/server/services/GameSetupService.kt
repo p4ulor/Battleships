@@ -44,10 +44,10 @@ class GameSetupService (
     }
 
     fun createGame(token: String, cgr: CreateGameRequest) : RequestResult {
-        val hostID = userData.authenticateUser(token) ?: return RequestResult(errorStatus = Status.InvalidTokenNotFound)
+        val hostID = userData.authenticateUser(token) ?: return RequestResult(error = Errors.InvalidTokenNotFound)
         if(getOnGoingGameOfUser(hostID, gameData)!=null){
             pl("User can't create game")
-            return RequestResult(errorStatus = Status.PlayerIsInAnotherGame)
+            return RequestResult(error = Errors.PlayerIsInAnotherGame)
         }
         pl("User can create game")
         var rules: Rules
@@ -55,11 +55,11 @@ class GameSetupService (
         else { //todo review this...
             val dim = try {
                 Dimension(cgr.rules.columnDim, cgr.rules.rowDim)
-            } catch (e: IllegalArgumentException){ return RequestResult(errorStatus = Status.BoardDimensionInvalid) }
+            } catch (e: IllegalArgumentException){ return RequestResult(error = Errors.BoardDimensionInvalid) }
 
             val shipTypesAllowed = cgr.rules?.shipsAllowed?.map{
-                val type = ShipType.convertToShipType(it.shipType) ?: return RequestResult("Ship type '${it.shipType}' doesn't exist", Status.ShipTypeDoesntExist)
-                try {ShipsTypesAndQuantity(type, it.quantityAllowed) } catch(e: IllegalArgumentException){ return RequestResult(errorStatus = Status.ShipTypeQuantityExceeded) }
+                val type = ShipType.convertToShipType(it.shipType) ?: return RequestResult("Ship type '${it.shipType}' doesn't exist", Errors.ShipTypeDoesntExist)
+                try {ShipsTypesAndQuantity(type, it.quantityAllowed) } catch(e: IllegalArgumentException){ return RequestResult(error = Errors.ShipTypeQuantityExceeded) }
             }
             pl("ships allowed obtained from body -> $shipTypesAllowed")
             try {
@@ -67,7 +67,7 @@ class GameSetupService (
                               cgr.rules?.shotsPerRound,
                               shipTypesAllowed?.toMutableList(),
                               cgr.rules.setupTime, cgr.rules.timeToMakeMove, cgr.rules.doAllShipTypesNeedToBeInserted)
-            } catch (e: Exception){ return RequestResult("${e.message}", Status.InvalidRules) }
+            } catch (e: Exception){ return RequestResult("${e.message}", Errors.InvalidRules) }
         }
 
         return acessStorage {
@@ -84,10 +84,10 @@ class GameSetupService (
     }
 
     fun joinGame(token: String, jgr: JoinGameRequest) : RequestResult { //todo, ver se dá para simplificar e evitar consultas repetitivas
-        val guestID = userData.authenticateUser(token) ?: return RequestResult(errorStatus = Status.InvalidTokenNotFound)
-        val game = gameData.getGame(jgr.gameID!!) ?: return RequestResult(errorStatus = Status.GameDoesntExist)
-        if(getOnGoingGameOfUser(guestID, gameData)!=null) return RequestResult(errorStatus = Status.PlayerIsInAnotherGame)
-        if(!game.enrollGuest(guestID)) return RequestResult(errorStatus = Status.YouCantJoinThisGame)
+        val guestID = userData.authenticateUser(token) ?: return RequestResult(error = Errors.InvalidTokenNotFound)
+        val game = gameData.getGame(jgr.gameID!!) ?: return RequestResult(error = Errors.GameDoesntExist)
+        if(getOnGoingGameOfUser(guestID, gameData)!=null) return RequestResult(error = Errors.PlayerIsInAnotherGame)
+        if(!game.enrollGuest(guestID)) return RequestResult(error = Errors.YouCantJoinThisGame)
 
         gameData.joinGame(guestID, jgr.gameID, game.setupTime)
         val name = userData.getPlayer(game.hostID)?.name
@@ -109,24 +109,24 @@ class GameSetupService (
     }
 
     fun boardSetup(token: String, bsr: BoardSetupRequest) : RequestResult { //todo, ver se dá para simplificar e evitar consultas repetitivas
-        val userID = userData.authenticateUser(token) ?: return RequestResult(errorStatus = Status.InvalidTokenNotFound)
-        val game = getOnGoingGameOfUser(userID, gameData) ?: return RequestResult(errorStatus = Status.YouAreNotPartOfAnyOnGoingGame)
+        val userID = userData.authenticateUser(token) ?: return RequestResult(error = Errors.InvalidTokenNotFound)
+        val game = getOnGoingGameOfUser(userID, gameData) ?: return RequestResult(error = Errors.YouAreNotPartOfAnyOnGoingGame)
         if(game!=null){
-            if(game.gameStatus==GameStatus.WAITING_FOR_GUEST) return RequestResult(errorStatus = Status.YouCantSubmitYourBoardYet)
+            if(game.gameStatus==GameStatus.WAITING_FOR_GUEST) return RequestResult(error = Errors.YouCantSubmitYourBoardYet)
             if(game.gameStatus!=GameStatus.SHIPS_SETUP) //if true, then it may be: HOST_TURN or GUEST_TURN
-                return RequestResult(errorStatus = Status.YouCaNoLongerChangeYourBoard)
+                return RequestResult(error = Errors.YouCaNoLongerChangeYourBoard)
         }
-        if(game.hasSetupTimeEnded()) return RequestResult(errorStatus = Status.BoardSetupTimeHasEnded)
+        if(game.hasSetupTimeEnded()) return RequestResult(error = Errors.BoardSetupTimeHasEnded)
         val isThisUserHost = game.isHost(userID)
-        if(isThisUserHost && game.isHostReady) return RequestResult("Host, you already said you were ready", errorStatus = Status.YouCaNoLongerChangeYourBoard)
-        else if(!isThisUserHost /*required!*/ && game.isGuestReady) return RequestResult("Guest, you already said you were ready", errorStatus = Status.YouCaNoLongerChangeYourBoard)
+        if(isThisUserHost && game.isHostReady) return RequestResult("Host, you already said you were ready", error = Errors.YouCaNoLongerChangeYourBoard)
+        else if(!isThisUserHost /*required!*/ && game.isGuestReady) return RequestResult("Guest, you already said you were ready", error = Errors.YouCaNoLongerChangeYourBoard)
 
         //convert the list of ShipRequestSegment to Ships
         val ships = mutableListOf<Ship>()
         bsr.ships.forEachIndexed { idx, it ->
-            val type = ShipType.convertToShipType(it.shipType) ?:                        return RequestResult("Ship at index $idx has an non-existing shiptype -> ${it.shipType}", Status.InvalidShip)
-            val head = Position.newPosition(it.head.column, it.head.row, Entity.SHIP) ?: return RequestResult("Ship at index $idx has an invalid position -> [${it.head.column}|${it.head.row}]", Status.InvalidShip)
-            val dir = Direction.convertToDirection(it.direction) ?:                      return RequestResult("Ship at index $idx has an invalid direction -> ${it.direction}", Status.InvalidShip)
+            val type = ShipType.convertToShipType(it.shipType) ?:                        return RequestResult("Ship at index $idx has an non-existing shiptype -> ${it.shipType}", Errors.InvalidShip)
+            val head = Position.newPosition(it.head.column, it.head.row, Entity.SHIP) ?: return RequestResult("Ship at index $idx has an invalid position -> [${it.head.column}|${it.head.row}]", Errors.InvalidShip)
+            val dir = Direction.convertToDirection(it.direction) ?:                      return RequestResult("Ship at index $idx has an invalid direction -> ${it.direction}", Errors.InvalidShip)
             ships.add(Ship(type, head, dir))
         }
 
@@ -136,7 +136,7 @@ class GameSetupService (
 
         //check the types allowed according to the game-rules that were set and if the size of the type of that ship is greater than the board
         val rejectedShip = game.rules.areTheseShipsSizeAndTypeAllowed(shipsTypesAndQuantity)
-        if(rejectedShip.first!=null) return RequestResult("ShipType '${rejectedShip.second?.name}' isn't allowed in this game. Reason -> ${rejectedShip.first?.msg}. ShipTypes allowed -> ${game.rules.shipsAllowed}", Status.ShipTypeNotAllowed)
+        if(rejectedShip.first!=null) return RequestResult("ShipType '${rejectedShip.second?.name}' isn't allowed in this game. Reason -> ${rejectedShip.first?.msg}. ShipTypes allowed -> ${game.rules.shipsAllowed}", Errors.ShipTypeNotAllowed)
         /* Example when this upper RequestResult returns
             "ShipType not allowed. ShipType 'Destroyer' isn't allowed in this game. Reason ->
             The ship type is not allowedShipTypes allowed ->
@@ -152,7 +152,7 @@ class GameSetupService (
         val shipsOfTheUser = if(isUserHost) game.hostShips else game.guestShips //in case he added other ships before and wanted to add more
         shipsOfTheUser.addAll(ships)
         val resultTriple = game.addShips(shipsOfTheUser, userID, setUserReady)
-        if(resultTriple.first.isNotEmpty()) return RequestResult(resultTriple.first, Status.ShipNotCompatible)
+        if(resultTriple.first.isNotEmpty()) return RequestResult(resultTriple.first, Errors.ShipNotCompatible)
 
         if(game.gameStatus.isGameOnGoing()){
             val scheduler = Executors.newSingleThreadScheduledExecutor()
@@ -187,9 +187,9 @@ class GameSetupService (
     }
 
     fun deleteLobby(token: String) : RequestResult {
-        val userID = userData.authenticateUser(token) ?: return RequestResult(errorStatus = Status.InvalidTokenNotFound)
-        val game = gameData.findGameWithUser(userID, listOf(GameStatus.WAITING_FOR_GUEST)) ?: return RequestResult(errorStatus = Status.LobbyNotFound)
-        if(game.hostID!=userID) return return RequestResult(errorStatus = Status.YouCantDeleteThisLobby)
+        val userID = userData.authenticateUser(token) ?: return RequestResult(error = Errors.InvalidTokenNotFound)
+        val game = gameData.findGameWithUser(userID, listOf(GameStatus.WAITING_FOR_GUEST)) ?: return RequestResult(error = Errors.LobbyNotFound)
+        if(game.hostID!=userID) return return RequestResult(error = Errors.YouCantDeleteThisLobby)
         return acessStorage {
             gameData.deleteLobby(game.id)
             RequestResult()
@@ -197,10 +197,10 @@ class GameSetupService (
     }
 
     fun newListener(token: String): RequestResult {
-        val userID = userData.authenticateUser(token) ?: return RequestResult(errorStatus = Status.InvalidTokenNotFound)
-        val game = gameData.findGameWithUser(userID, mutableListOf(GameStatus.SHIPS_SETUP)) ?: return RequestResult(errorStatus = Status.YouAreNotInTheShipsSetupPhase)
+        val userID = userData.authenticateUser(token) ?: return RequestResult(error = Errors.InvalidTokenNotFound)
+        val game = gameData.findGameWithUser(userID, mutableListOf(GameStatus.SHIPS_SETUP)) ?: return RequestResult(error = Errors.YouAreNotInTheShipsSetupPhase)
         val isThisUserTheHost = userID==game.hostID
-        val opponentID = (if(isThisUserTheHost) game.hostID else game.guestID) ?: return RequestResult("opponentID is null",Status.InvalidState)
+        val opponentID = (if(isThisUserTheHost) game.hostID else game.guestID) ?: return RequestResult("opponentID is null",Errors.InvalidState)
         return RequestResult(readinessService.newListener(game.id, userID, opponentID))
     }
 }

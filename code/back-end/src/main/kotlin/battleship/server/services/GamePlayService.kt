@@ -13,8 +13,6 @@ import battleship.server.storage.mem.UserMem
 import battleship.server.utils.*
 import org.jdbi.v3.core.Jdbi
 import org.springframework.stereotype.Component
-import java.util.concurrent.Executors
-import java.util.concurrent.ScheduledExecutorService
 
 @Component
 class GamePlayService ( //GameSetupService comment at the top to see why I did it like this
@@ -24,15 +22,15 @@ class GamePlayService ( //GameSetupService comment at the top to see why I did i
 ) {
 
     fun shoot(token: String, shot: FireShotRequest) : RequestResult {
-        val userID = userData.authenticateUser(token) ?: return RequestResult(errorStatus = Status.InvalidTokenNotFound)
-        val game = getOnGoingGameOfUser(userID, gameData) ?: return RequestResult(errorStatus = Status.YouAreNotPartOfAnyOnGoingGame)
+        val userID = userData.authenticateUser(token) ?: return RequestResult(error = Errors.InvalidTokenNotFound)
+        val game = getOnGoingGameOfUser(userID, gameData) ?: return RequestResult(error = Errors.YouAreNotPartOfAnyOnGoingGame)
         //if(game.rules.hasRoundTimeEnded()) return RequestResult(errorStatus = Status.RoundTimeAsEnded) //this line if futile, because if the round time has ended, then the game would be over
-        val positionOfTheShot = Position.newPosition(shot.position.column, shot.position.row) ?: return RequestResult("The shot has an invalid position -> [${shot.position.column}|${shot.position.row}]", Status.InvalidShot)
-        val shotResult = game.makeShot(userID, positionOfTheShot) ?: return RequestResult(errorStatus = Status.ItsNotUsersTurnToShoot) //can change data (on success) -> gameStatus (switches turn or sets winner), hostShips, hostShots, guestShips, guestShots
+        val positionOfTheShot = Position.newPosition(shot.position.column, shot.position.row) ?: return RequestResult("The shot has an invalid position -> [${shot.position.column}|${shot.position.row}]", Errors.InvalidShot)
+        val shotResult = game.makeShot(userID, positionOfTheShot) ?: return RequestResult(error = Errors.ItsNotUsersTurnToShoot) //can change data (on success) -> gameStatus (switches turn or sets winner), hostShips, hostShots, guestShips, guestShots
         val isHost = game.isHost(userID)
         when(shotResult){
-            ShotResult.INVALID_ALREADY_HIT -> return RequestResult(shotResult.toString(), Status.InvalidShot) //no game data change
-            ShotResult.OFF_THE_BOARD -> return RequestResult(shotResult.toString(), Status.InvalidShot) //no game data change
+            ShotResult.INVALID_ALREADY_HIT -> return RequestResult(shotResult.toString(), Errors.InvalidShot) //no game data change
+            ShotResult.OFF_THE_BOARD -> return RequestResult(shotResult.toString(), Errors.InvalidShot) //no game data change
             //It's MISS, HIT, SUNK or WIN. store the changed object in DB:
             else -> { //I made this else to avoid repetitive lines of calling 'gameData.storeUserRound', both in non-win and win case
                 gameData.storeUserRound(game.id, game.gameStatus, isHost, if(isHost) game.hostShots else game.guestShots, if(isHost) game.guestShips else game.hostShips, game.roundTime)
@@ -55,15 +53,15 @@ class GamePlayService ( //GameSetupService comment at the top to see why I did i
      *  game is finished, all info of the game will be returned
      */
     fun getKnownInformation(token: String, gameID: Int, consult: Boolean?) : RequestResult {
-        val userID = userData.authenticateUser(token) ?: return RequestResult(errorStatus = Status.InvalidTokenNotFound)
-        var game = gameData.getGame(gameID) ?: return RequestResult("gameID provided=$gameID", Status.GameDoesntExist)
+        val userID = userData.authenticateUser(token) ?: return RequestResult(error = Errors.InvalidTokenNotFound)
+        var game = gameData.getGame(gameID) ?: return RequestResult("gameID provided=$gameID", Errors.GameDoesntExist)
         val isUserHost = game.hostID==userID
         if(consult!=null){
             if(game.gameStatus.isAFinaleState()) return RequestResult(game)
-            return RequestResult(errorStatus = Status.YouCantConsultThisGameYet)
+            return RequestResult(error = Errors.YouCantConsultThisGameYet)
         } else {
             if(!isUserHost){
-                if (game.guestID != userID) return RequestResult("gameID provided=$gameID", Status.YouAreNotPartOfThisGame)
+                if (game.guestID != userID) return RequestResult("gameID provided=$gameID", Errors.YouAreNotPartOfThisGame)
             }
         }
         if(game.guestID==null) return RequestResult(GetGameInformation(null, GameStatus.WAITING_FOR_GUEST, mutableListOf(), myShots = mutableListOf()))
@@ -80,10 +78,10 @@ class GamePlayService ( //GameSetupService comment at the top to see why I did i
     }
 
     fun quitGame(token: String) : RequestResult { //Note: the user can quit in both host and guest turns
-        val userID = userData.authenticateUser(token) ?: return RequestResult(errorStatus = Status.InvalidTokenNotFound)
-        val game = getOnGoingGameOfUser(userID, gameData) ?: return RequestResult(errorStatus = Status.YouAreNotPartOfAnyOnGoingGame)
+        val userID = userData.authenticateUser(token) ?: return RequestResult(error = Errors.InvalidTokenNotFound)
+        val game = getOnGoingGameOfUser(userID, gameData) ?: return RequestResult(error = Errors.YouAreNotPartOfAnyOnGoingGame)
         val isValidTimeToQuit = game.isGameInTheFollowingStates((mutableListOf(GameStatus.HOST_TURN, GameStatus.GUEST_TURN, GameStatus.SHIPS_SETUP)))
-        if(!isValidTimeToQuit) return RequestResult(errorStatus = Status.NoValidStateToQuit)
+        if(!isValidTimeToQuit) return RequestResult(error = Errors.NoValidStateToQuit)
         var newGameStatus: GameStatus
         if(game.gameStatus==GameStatus.SHIPS_SETUP){
             gameData.setGameStatus(game.id, GameStatus.ABORTED)

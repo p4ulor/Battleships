@@ -18,7 +18,7 @@ class UserService(
 ){
 
     fun createUser(u: CreateUserRequest) : RequestResult {
-        if(!isEmailGood(u.email)) return RequestResult(errorStatus = Status.EmailBadFormat)
+        if(!isEmailGood(u.email)) return RequestResult(error = Errors.EmailBadFormat)
         val user = NewUser(u.name, u.email, u.password) //the class will already hash and generate token!
         return acessStorage {
             val id = userData.createUser(user)
@@ -29,7 +29,7 @@ class UserService(
     fun loginUser(u: LoginUserRequest) : RequestResult {
         return acessStorage {
             val tokenAndPwAndID = userData.loginUser(u.emailOrName, isEmailGood(u.emailOrName)) //2nd param will tell if the method of user identification will be through email or name of the user
-            if(!isPasswordCorrect(u.password, tokenAndPwAndID.second)) RequestResult(errorStatus = Status.WrongPassword)
+            if(!isPasswordCorrect(u.password, tokenAndPwAndID.second)) RequestResult(error = Errors.WrongPassword)
             else RequestResult(UserTokenAndIDResponse(tokenAndPwAndID.first, tokenAndPwAndID.third))
         }
     }

@@ -3,11 +3,11 @@
 - Front end docs -> [here](./front-end.md)
 - See [api-documentation](./api-documentation.md).
 - See [problems](./problems.md), describes what my api returns when errors occur
-- See [Postman tests collection](./docs/DAW.postman_collection.json) a series of pre-made HTTP requests to test the API
+- See [Postman tests collection](./DAW.postman_collection.json) a series of pre-made HTTP requests to test the API
 - [OG game rules](https://www.hasbro.com/common/instruct/battleship.pdf), [game instructions video](https://youtu.be/RY4nAyRgkLo), [game strategy analysis video](https://youtu.be/LbALFZoRrw8)
 
 ## Deployment guides
-- [Local deployment guide](/code/back-end/README.md)
+- [Local deployment guide](../code/back-end/README.md)
 - [Cloud deployment guide](./Cloud%20deployment.md)
 
 # Tags info

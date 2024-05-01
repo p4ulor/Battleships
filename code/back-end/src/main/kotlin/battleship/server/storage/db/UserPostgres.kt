@@ -3,7 +3,7 @@ package battleship.server.storage.db
 import battleship.server.model.NewUser
 import battleship.server.model.Player
 import battleship.server.model.User
-import battleship.server.services.Status
+import battleship.server.services.Errors
 import battleship.server.storage.UserData
 import battleship.server.storage.db.daos.UserDAO
 import battleship.server.utils.Paging
@@ -23,8 +23,8 @@ class UserPostgres (private val jdbi: Jdbi) : UserData {
             return userID
         }
         catch (e: Exception){
-            if(e.toString().contains("name")) throw StorageException(Status.UserNameInUse, e.toString())
-            else throw StorageException(Status.EmailInUse, e.toString())
+            if(e.toString().contains("name")) throw StorageException(Errors.UserNameInUse, e.toString())
+            else throw StorageException(Errors.EmailInUse, e.toString())
         }
     }
 
@@ -39,33 +39,33 @@ class UserPostgres (private val jdbi: Jdbi) : UserData {
            }.apply {
                return Triple(this.token, this.hashedPassword, this.id)
            }
-        } catch (e: Exception){ throw StorageException(Status.UserNotFound, "Failed finding user using $fieldEmailOrName. SQL says -> ${e.message}") }
+        } catch (e: Exception){ throw StorageException(Errors.UserNotFound, "Failed finding user using $fieldEmailOrName. SQL says -> ${e.message}") }
     }
 
     override fun getPlayer(id: Int): Player? {
         try { return jdbi.onDemand(UserDAO::class).getPlayer(id) }
-        catch (e: Exception){ throw StorageException(Status.UserNotFound, "SQL says -> ${e.message}") }
+        catch (e: Exception){ throw StorageException(Errors.UserNotFound, "SQL says -> ${e.message}") }
     }
 
     override fun getPlayerByToken(token: String): Player? {
         try { return jdbi.onDemand(UserDAO::class).getPlayerByToken(token) }
-        catch (e: Exception){ throw StorageException(Status.UserNotFound, "SQL says -> ${e.message}") }
+        catch (e: Exception){ throw StorageException(Errors.UserNotFound, "SQL says -> ${e.message}") }
     }
 
     override fun getPlayerRankings(orderByWinsOrPlays: String, paging: Paging) : List<Player> {
         require(orderByWinsOrPlays=="playCount" || orderByWinsOrPlays=="winCount")
         return try { jdbi.onDemand(UserDAO::class).getPlayerRankings(orderByWinsOrPlays, paging) }
-        catch (e: Exception){ throw StorageException(Status.StorageError, e.toString()) }
+        catch (e: Exception){ throw StorageException(Errors.StorageError, e.toString()) }
     }
 
     override fun updateStats(id: Int, playCount: Int, winCount: Int) {
         try { jdbi.onDemand(UserDAO::class).updateStats(id, playCount, winCount) }
-        catch (e: Exception){ throw StorageException(Status.UserNotFound, e.toString()) }
+        catch (e: Exception){ throw StorageException(Errors.UserNotFound, e.toString()) }
     }
 
     override fun authenticateUser(token: String): Int? {
         return try { jdbi.onDemand(UserDAO::class).authenticateUser(token)}
-        catch (e: Exception){ throw StorageException(Status.InvalidTokenNotFound, e.toString()) }
+        catch (e: Exception){ throw StorageException(Errors.InvalidTokenNotFound, e.toString()) }
     }
 }
 

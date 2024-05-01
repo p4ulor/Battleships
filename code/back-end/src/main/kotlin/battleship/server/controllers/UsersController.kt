@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import javax.validation.Valid
 
-/*
+/**
 A controller is a container of handlers.
 A handler is a function that is responsible for processing HTTP requests. Handlers contain @___Mapping annotation
 The annotations defines for spring a handler, which is associated with the function. This will make a bridge/channel
  that will receive the HTTP requests and forward them to the function
- */
+*/
 
 @RestController
 @RequestMapping("users")

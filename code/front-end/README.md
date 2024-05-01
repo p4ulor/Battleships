@@ -1,23 +1,28 @@
-# Front end code
-The purpose of this code module is to sort out and produce the necessary code and media (both static-content) for a modern browser that uses Javascript, CSS, HTML, Images and other media, in order for a client to interact with our API/Server with a friendly user interface.
+# front-end
+<center>
+    <img class="center" style="max-width: 400px; margin: auto auto;" src="../../docs/imgs/cover_front-end.jpeg" />
+</center>
 
-The ouput result will be 1 .html file, 1 .js file and other media files that need to be included in the src/main/resources/public/ folder, which the API will use when a client tries to connect the server in the first time
+The purpose of this code module is to have and produce the necessary code and media (both static-content) for a modern browser that uses Javascript, CSS, HTML, Images and other media, in order for a client to interact with our API/Server with a friendly user interface
 
-## In order to use, first install the dependencies in package.json (the resulting node_modules folder will be 100mb)
+The intended output result will be 1 .html file, 1 .js file and other media files that need to be included in the src/main/resources/public/ folder, which the API will use, so when a client tries to connect the server in the first time, the .html page is sent, along with the .js file that it references
+
+## 1 - Install the dependencies in package.json (the resulting node_modules folder will be 100mb)
 - npm install
 
-## Build bundled files file and dependent files (to ./dist/) (allows access to source code in browser inspect/dev tools)
+## 2-a - Build bundled files file and dependent files (to ./dist/) (allows access to source code in browser inspect/dev tools)
 - npm run build
 
-## Build final/production (1 line .js) file and dependent files (to ./dist/)
+## 2-b - Build final/production (1 line .js) file and dependent files (to ./dist/)
 - npm run prod
 
-## Run a webpack mock-server to easily try it out in the browser
+## 2-c Run a webpack mock-server to easily try it out in the browser
 - npm run start
 
-Running the webpack mock-server is recommended during development because it auto-updates on code changes. Note: it doesn't build files. And it only litens to changes in src. The keyword `run` is optional by the way
+Running the webpack mock-server is recommended during development because it auto-updates on code changes. Note: it doesn't build files. And it only listens to changes in src. The keyword `run` is optional by the way
 
-Note that this folder contains certain language sintaxes and libraries that can only be run with NodeJS ([see](https://github.com/isel-leic-daw/s2223i-51d-51n-public/blob/main/docs/lecture-notes/03.0-the-browser-application-platform.md)), but the end product must be pure (vanilla) javascript in order for the browser to interpret. And `webpack` is the dependency that does it for us
+Note that this folder contains certain language syntaxes and libraries that can only be run with NodeJS ([see](https://github.com/isel-leic-daw/s2223i-51d-51n-public/blob/main/docs/lecture-notes/03.0-the-browser-application-platform.md)), but the end product must be pure (vanilla) Javascript in order for the browser to interpret. And `webpack` is the dependency that does it for us
+
 # Dependencies included
 ### React
 - [@types/react](https://www.npmjs.com/package/@types/react) -> Provides us with type definitions when calling React functions

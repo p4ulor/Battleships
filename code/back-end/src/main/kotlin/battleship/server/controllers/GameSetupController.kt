@@ -14,7 +14,7 @@ import javax.validation.Valid
 @RequestMapping("setup")
 class GameSetupController(private val gameSetupService: GameSetupService) {
 
-    @GetMapping("") //just for quick and easier debugging!
+    @GetMapping("") //just for quick and easier debugging (when running in memory)
     fun ay(req: HttpServletRequest) : List<Game>? {
         val token = getAuthorizationToken(req) ?: throw ForbiddenException("Authorization header missing")
         return if(token=="d83a659c-b452-11ec-b909-0242ac120002") games else null

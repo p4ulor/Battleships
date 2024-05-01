@@ -1,6 +1,6 @@
 package battleship.server.utils
 
-import battleship.server.services.Status
+import battleship.server.services.Errors
 import org.springframework.beans.ConversionNotSupportedException
 import org.springframework.beans.TypeMismatchException
 import org.springframework.http.HttpHeaders
@@ -26,7 +26,7 @@ import org.springframework.web.servlet.NoHandlerFoundException
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
 import javax.servlet.http.HttpServletRequest
 
-class StorageException(val apparentCause: Status, val exceptionMsg: String = "Storage Exception") : Exception(exceptionMsg)
+class StorageException(val apparentCause: Errors, val exceptionMsg: String = "Storage Exception") : Exception(exceptionMsg)
 
 // HTTP Exceptions
 class NotFoundException(val msg: String, val path: String? = null) : ResponseStatusException(HttpStatus.NOT_FOUND, msg)
