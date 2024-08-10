@@ -108,7 +108,7 @@ class BattleshipServerApplication {
                 allowedHeaders("*").
                 allowedMethods("*"). //allows all HTTP methods, https://spring.io/blog/2015/06/08/cors-support-in-spring-framework#:~:text=By%20default%20all%20origins%20and%20GET%2C%20HEAD%20and%20POST%20methods%20are%20allowed.
                 allowedOrigins("*").allowCredentials(true). //allows cookies
-                allowedOrigins("http://localhost:8080", "http://localhost:8081") //webpack server's port
+                allowedOrigins("http://localhost:8080", "http://localhost:8081", "http://localhost:9000") //webpack server's port
             }
 
             override fun addInterceptors(registry: InterceptorRegistry) { //https://www.baeldung.com/spring-mvc-handlerinterceptor
@@ -182,6 +182,7 @@ class BattleshipServerApplication {
             } //I need to insert path otherwise it will always be "/error"...
             else {
                 pl("Returning index.html")
+                // A file under the directory set at spring.web.resources.static-location should be provided
                 ModelAndView("forward:/index.html", emptyMap<String, Any>(), HttpStatus.OK)
             }
         }
@@ -201,7 +202,7 @@ var yourJDBC_URL = "jdbc:postgresql://localhost/postgres?user=postgres&password=
  */
 
 /**
- * //if false, it will use [yourJDBCURL]
+ * if false, it will use [yourJDBCURL]
  */
 var useEnvironmentVariable = false
 
@@ -225,4 +226,4 @@ fun main(args: Array<String>) {
     runApplication<BattleshipServerApplication>(*args)
 }
 
-val serverInfo = ServerInfo("1.0.0", Author("Paulo Rosa", "a44873@alunos.isel.pt", 44873))
+val serverInfo = ServerInfo("1.0.0", Author("Paulo Rosa", "44873@email.com", 44873))

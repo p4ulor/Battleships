@@ -1,16 +1,16 @@
 # front-end
 <center>
-    <img class="center" style="max-width: 400px; margin: auto auto;" src="../../docs/imgs/cover_front-end.jpeg" />
+    <img class="center" style="width: 350px; margin: auto auto;" src="../../docs/imgs/cover_front-end.jpeg" />
 </center>
 
-The purpose of this code module is to have and produce the necessary code and media (both static-content) for a modern browser that uses Javascript, CSS, HTML, Images and other media, in order for a client to interact with our API/Server with a friendly user interface
+This code module has the necessary code and media (both static-content) for a modern browser that uses Javascript, CSS, HTML, Images and other media, in order for a client to interact with our API/Server with a friendly user interface
 
-The intended output result will be 1 .html file, 1 .js file and other media files that need to be included in the src/main/resources/public/ folder, which the API will use, so when a client tries to connect the server in the first time, the .html page is sent, along with the .js file that it references
+The intended output result will be 1 .html file, 1 .js file and other media files that need to be included in the src/main/resources/public/ folder, which the API will use, so when a client tries to connect the server in the first time, the .html page is sent, along with the .js file that it references. This .js file will contain all of React's magic, which consists of modifying the HTML document tree to display whatever content we programmed to show-up.
 
 ## 1 - Install the dependencies in package.json (the resulting node_modules folder will be 100mb)
 - npm install
 
-## 2-a - Build bundled files file and dependent files (to ./dist/) (allows access to source code in browser inspect/dev tools)
+## 2-a - Build src files and copy media files (to ./dist/) (allows access to source code in browser inspect/dev tools)
 - npm run build
 
 ## 2-b - Build final/production (1 line .js) file and dependent files (to ./dist/)
@@ -18,10 +18,11 @@ The intended output result will be 1 .html file, 1 .js file and other media file
 
 ## 2-c Run a webpack mock-server to easily try it out in the browser
 - npm run start
+- Will be available at http://localhost:8080/
 
-Running the webpack mock-server is recommended during development because it auto-updates on code changes. Note: it doesn't build files. And it only listens to changes in src. The keyword `run` is optional by the way
+Running the Webpack mock-server is recommended during development because it auto-updates on code changes. Note: it doesn't build files. And it only listens to changes in src.
 
-Note that this folder contains certain language syntaxes and libraries that can only be run with NodeJS ([see](https://github.com/isel-leic-daw/s2223i-51d-51n-public/blob/main/docs/lecture-notes/03.0-the-browser-application-platform.md)), but the end product must be pure (vanilla) Javascript in order for the browser to interpret. And `webpack` is the dependency that does it for us
+Note that this folder contains certain language syntaxes and libraries that can only be run with NodeJS ([see](https://github.com/isel-leic-daw/s2223i-51d-51n-public/blob/main/docs/lecture-notes/03.0-the-browser-application-platform.md)), BUT the end product must be pure (vanilla) Javascript in order for the browser to interpret. And `webpack` is the library that does it for us
 
 # Dependencies included
 ### React
@@ -43,31 +44,31 @@ Note that this folder contains certain language syntaxes and libraries that can 
 
 ## Directory content list
 - `public` -> HTML, CSS and media files
-- `src` -> React code using typescript
+- `src` -> React code using Typescript
 - `package.json` -> Defines scripts and dependencies
-- `package-lock.json` -> Ensures the entegrity/compatibility of the NPM dependencies
+- `package-lock.json` -> Ensures the integrity/compatibility of the NPM dependencies
 - `webpack.config.js` -> Config for `webpack` to use, to produce the build
-- `tsconfig.json` -> Configures how typescript will be transformed to javacript
+- `tsconfig.json` -> Configures how Typescript will be transformed to Javacript
 
 ## Notes
-- In VSC upper controls, consider toggling: View -> Word Wrap (or ALT+Z) in certain ocassions. I prefer letting my code "breathe" or leaving comments as close as possible to the code related to it (in the same line), but further away from the side because it can be distracting or obfuscaste sometimes IMO
+- In VSC upper controls, consider toggling: View -> Word Wrap (or ALT+Z) in certain ocassions. I prefer letting my code "breathe" or leaving comments as close as possible to the code related to it (usually in the same line), but further away from the side because it can be distracting or obfuscaste sometimes IMO
 - Try deleting the .html to see what happens. Webpack creates a default .html page listing all file contents
-- By default webpack will try to use an .html file in `public/.index.html`. I installed the `html-webpack-plugin` because of [this](https://stackoverflow.com/questions/32155154/webpack-config-how-to-just-copy-the-index-html-to-the-dist-folder)
-- In VSC, when naming `div`'s (and other things), you can type `div.CSSclassName` and when pressing enter it will create `<div className="CSSclassName">`
+- By default Webpack will try to use an .html file in `public/.index.html`. I installed the `html-webpack-plugin` because of [this](https://stackoverflow.com/questions/32155154/webpack-config-how-to-just-copy-the-index-html-to-the-dist-folder). See the last lines of [webpack.config.js](webpack.config.js)
+- VSC tip: when naming `div`'s (and other things), you can type `div.<CSSclassName>` and when pressing enter it will create `<div className="<CSSclassName>">`
 - React Router avoids reloading entire documents, contrary to using link ref \<a\>
-- I tried to avoid using a CSS bootstrap because I would have to learn how to use the bootstrap and it would force me to add a lot of other elements and know what classes to assign to elements just to make a certain look work and could make the writing of the JSX a bit more confusing. And because CSS is a skill that I should learn like any other.
-- During development and testing using Chrome Dev Tools, some scripts in a VM-12345.MySrcFile.tsx will ran and will look like clones of your code and run things your code is already running. What's the most likely explanation, for my case, is [this](https://stackoverflow.com/a/30321123/9375488) although the other answers can provide more info.
+- I tried to avoid using a CSS bootstrap because I would have to learn how to use the bootstrap and it would force me to add a lot of other elements and know what classes to assign to elements just to make a certain look work and could make the writing of the JSX a bit more confusing. And without it I have more control and learn more about CSS
+- During development and testing using Chrome Dev Tools, some scripts in a VM-12345.MySrcFile.tsx will run and will look like clones of your code and run things your code is already running. What's the most likely explanation, for my case, is [this](https://stackoverflow.com/a/30321123/9375488) although the other answers can provide more info.
 
 ### About React
 - https://reactjs.org/docs/dom-elements.html
 - https://reactjs.org/docs/lifting-state-up.html
 - https://create-react-app.dev/docs/adding-images-fonts-and-files/
 - The naming and indication of CSS properties in react can be quite different! The values indicated can only be the strings. Only camel case properties are allowed. Per example, `border-radius` doesn't exist and there's no `class`, it's `className`. And the name suggestion/autocompletion can be weird sometimes. It's recommended to define all styles in a .css file.
-- [1](https://stackoverflow.com/questions/52622578/react-component-self-close-on-button-click)
-- [2](https://stackoverflow.com/questions/63359138/react-closing-a-dropdown-when-click-outside)
+- [react-component-self-close-on-button-click](https://stackoverflow.com/questions/52622578/react-component-self-close-on-button-click)
+- [react-closing-a-dropdown-when-click-outside](https://stackoverflow.com/questions/63359138/react-closing-a-dropdown-when-click-outside)
 ### About CSS config
-- [1](https://stackoverflow.com/questions/34963051/webpack-not-loading-css)
-- [2](https://stackoverflow.com/questions/47921082/with-webpack-why-should-one-import-css-files-from-js-source-code-and-not-build)
-- [3](https://blog.jakoblind.no/css-modules-webpack/)
+- [webpack-not-loading-css](https://stackoverflow.com/questions/34963051/webpack-not-loading-css)
+- [with-webpack-why-should-one-import-css-files-from-js-source-code-and-not-build](https://stackoverflow.com/questions/47921082/with-webpack-why-should-one-import-css-files-from-js-source-code-and-not-build)
+- [css-modules-webpack](https://blog.jakoblind.no/css-modules-webpack/)
 
 ### All media is copyright/royalty-free or was created/edited by me

@@ -1,5 +1,5 @@
 //export const hostname = "https://battleshipp4ulor.azurewebsites.net" //for azure build
-export const hostname = "http://localhost:8080"
+export const hostname = "http://localhost:9000" //must be the same as the servers, 8080 on production, 9000 on testing
 
 type HTTPMethod = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
@@ -39,7 +39,9 @@ export function doFetch(url: string, method: HTTPMethod, requestBody?: object, d
         }
         return jsonObj
     }).catch(e => {
-        alert("Fetch error ->"+e)
+        const error = "Fetch error ->"+e
+        console.log(error)
+        alert(error)
     })
     return x
 }

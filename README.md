@@ -4,30 +4,30 @@
 - When creating a game, you can configure the types and number of each type of ship that's allowed, along w/ the time limits for configuring and the round of players. Rotating the ship is not supported, I didn't have time and it would be kinda hard for the way I made things work at the time
 
 <center>
-    <img class="center" style="max-width: 400px; margin: auto auto;" src="./docs/imgs/cover_main.jpeg" />
+    <img class="center" style="width: 350px; margin: auto auto;" src="./docs/imgs/cover_main.jpeg" />
 </center>
 
 # Quick demo
 TODO
 
 # Quick technical overview
-For the full details see [docs/README.md](./docs/README.md)
-- [back-end docs shortcut](./docs/back-end.md)
-- [front-end docs shortcut](./docs/front-end.md)
-- [quick setup guide in code/README.md and deeper technical details for back-end & back-end](./code/README.md)
-## Programming Languages:
-### Used in back-end:
+For the full details see [docs/README.md](./docs/README.md). Main docs:
+- [quick build & run guide](./code/README.md)
+- [back-end docs](./docs/back-end.md)
+- [front-end docs](./docs/front-end.md)
+## Programming Languages
+### Used in [back-end](./code/back-end/)
 - Kotlin (& Gradle, with Kotlin DSL, as the build tool)
 - PostgreSQL
-### Used in front-end:
+### Used in [front-end](./code/front-end/)
 - Typescript (transpiled to Javascript)
 - HTML and CSS
 ## Frameworks
 - Spring (for back-end)
 - React (for front-end)
 ### Other relevant libraries or tools used in back-end
-- [JDBI](https://jdbi.org/) (built on top of JDBC), a database driver / interface to interact with the Postgres data base
-- [Jackson JSON parsing](https://github.com/FasterXML/jackson), a JSON parsing library (similar to Google's `gson`) to store some data, mostly lists of objects, in the database
+- [JDBI](https://jdbi.org/) (built on top of JDBC), used to interact with the PostgreSQL database
+- [Jackson JSON parsing](https://github.com/FasterXML/jackson), a JSON parsing library (similar to Google's `gson`), used to store some lists of complex objects into a JSON string in the database
 ## Recommended editors/programs to use:
 - **IntelliJ** (for back-end)
 - **Visual Studio Code** (for front-end)
@@ -38,10 +38,6 @@ For the full details see [docs/README.md](./docs/README.md)
 ## Deployment methods experimented with
 - Docker (and docker compose)
 - Microsoft Azure
-
-## Code shortcuts
-- [back-end](/code/back-end/src/main/kotlin/battleship/server). The API / server
-- [front-end](/code/front-end/) The code that will run in a client's browser, which is a running enviornment that will provide a UI to interact with our back-end
 
 ## Trivia
 ### 1 - Evaluation / rating
@@ -56,6 +52,6 @@ For the full details see [docs/README.md](./docs/README.md)
 - Thankfully, I had Three 6 Mafia and Sv1c!d3boys to dwell into this challenging semester. Music is very helpful for me in order to have the right mindset and energy. In some instances, the evilish sounds in the cold of the night reminded that I was all in my own. In others instances, the gangsta mindset made me man up and put in work. When you see the code and this work, just know that I was bangin' memphis rap while doing it. Putting in work while in the cold and darkness of winter. All by myself in study-rooms. This is T6M, and specially Mystic Stylez, fueled & certified code 😤😈. Now, I'll continue this journey while Ridin' N' Da Chevy...
 
 <center>
-    <img class="center" style="max-width: 400px; margin: auto auto;" src="./docs/imgs/vibe-albums.jpg" />
+    <img class="center" style="width: 350px; margin: auto auto;" src="./docs/imgs/vibe-albums.jpg" />
 </center>
 

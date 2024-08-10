@@ -13,7 +13,7 @@ module.exports = {
         hot: false, //https://webpack.js.org/guides/hot-module-replacement/
         historyApiFallback: true, //establishes that paths that are not found directly, should be handled by the index.html (and it's javascript), assuming it uses HTML5 History API (which React Router uses). Per example, if this was false, an acess to a path other than'/' per example when in /about, it will say GET - Not found (which is a response from the webpack server). https://webpack.js.org/configuration/dev-server/#devserverhistoryapifallback
         proxy: { //alternative to overriding CORS in the server
-            '/': 'http://localhost:9000'
+            '/': 'http://localhost:9000' //should be the same port as used in the back-end
         } 
     },
     resolve: {
@@ -67,7 +67,7 @@ module.exports = {
     plugins: [ //https://webpack.js.org/plugins/html-webpack-plugin/ https://stackoverflow.com/a/33519539/9375488
         new HtmlWebpackPlugin({ //the output file in /dist/ will always be index.html (if we dont specify w/ <filename>), no matter the name of the template
           template: 'public/index.html',
-          //favicon: './public/favicon.ico' //I uncommented this because it wasn't including the / like /favico.ico
+          favicon: 'public/favicon.ico' //Used just to copy the file to the dist folder, because on the build process of modifying the dist/index.html, it isn't including the / like /favico.ico, necessary for the icon to show up in the sub routes. So I manually added the line in the index.html document.
         })
     ]
 }

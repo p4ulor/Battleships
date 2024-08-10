@@ -44,7 +44,7 @@ export function UserProfile(){
             userProfileData=
                 <div>
                     <p>You are not logged in</p>
-                    <button className='highlighted' onClick={ () => navigate("/login")}>Loggin</button>
+                    <button className='highlighted' onClick={ () => navigate("/login")}>Log in</button>
                 </div>
         }
         else if(userProfile){

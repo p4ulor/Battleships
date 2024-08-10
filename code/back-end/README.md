@@ -1,18 +1,23 @@
 # back-end
 <center>
-    <img class="center" style="max-width: 400px; margin: auto auto;" src="../../docs/imgs/cover_back-end.jpeg" />
+    <img class="center" style="width: 350px; margin: auto auto;" src="../../docs/imgs/cover_back-end.jpeg" />
 </center>
 
-
 ## Open this folder using IntelliJ
-The `.run` folder contains the "Run/Debug" configurations that I saved as being part of the project. It's interpreted by IntelliJ. One config runs the server using the memory as the DB, the other uses Posgresql as the DB.
+The `.run` folder contains the "Run/Debug" configurations that I saved as being part of the project. It's interpreted 
+by IntelliJ. It comes with 3 configs: run a One config runs the server using the memory as the DB, the other uses Posgresql as the DB.
 # Contents
 - .run -> Some run configurations (for IntelliJ)
 - gradle/wrapper -> Info about gradle version to be used during build
-- src -> main/kotlin/ -> source code. main/resources/ -> static content (html and javascript sent to client's to have an interface to work with the server)
-- staticdev -> A folder that is useful to use when testing solely the front-end build. Which will null out the necessity of restarting the server/re-building the server to see apply front-end code changes. In order for this to to work, make sure the file ``resources/application.properties` property called `spring.web.resources.static-locations` references this folder first.
+- src -> main/kotlin/ -> source code. main/resources/ -> static content (html and javascript sent to client's to have 
+- an interface to work with the server)
+- staticdev -> A folder that is useful to use when testing solely the front-end build. Which will null out the 
+necessity of re-building & running the server to apply the front-end code changes. In order for this
+to work, make sure the file [resources/application.properties](./src/main/resources/application.properties) property 
+set at `spring.web.resources.static-locations`
+to reference this folder first.
 - build.gradle.kts -> Plugins for the build system (gradle) and dependencies in use for the project
-- [gradle.bat](https://stackoverflow.com/a/44860398/9375488)
+- [gradle.bat](https://stackoverflow.com/a/44860398/9375488) for Windows and gradlew for Linux (or Mac)
 ## Docker files:
 - docker-compose.yml -> Defines list of containers to run locally
 - docker-compose-azure -> Specific docker-compose file to run containers in azure
