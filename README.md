@@ -3,9 +3,9 @@
 - Allows playing the Battleships game PvP w/ an account
 - When creating a game, you can configure the types and number of each type of ship that's allowed, along w/ the time limits for configuring and the round of players. Rotating the ship is not supported, I didn't have time and it would be kinda hard for the way I made things work at the time
 
-<center>
-    <img class="center" style="width: 350px; margin: auto auto;" src="./docs/imgs/cover_main.jpeg" />
-</center>
+<p align="center">
+    <img style="width: 350px; margin: auto auto;" src="./docs/imgs/cover_main.jpeg" />
+</p>
 
 # Quick demo
 TODO
@@ -51,7 +51,7 @@ For the full details see [docs/README.md](./docs/README.md). Main docs:
 - Done in the winter, which is a season I don't like very much for the lack of sun and the cold. As a side effect, it "solidifies" my mind, but in some sense it helpes me focus. At the same time, I did 2 other hard subjects: Introduction to Programming in the Web ([IPW](https://github.com/isel-leic-ipw/). 90% alone) and C language and Assembly (PSC, alone). I grew a lot as a programmer in the winter semester of 2022
 - Thankfully, I had Three 6 Mafia and Sv1c!d3boys to dwell into this challenging semester. Music is very helpful for me in order to have the right mindset and energy. In some instances, the evilish sounds in the cold of the night reminded that I was all in my own. In others instances, the gangsta mindset made me man up and put in work. When you see the code and this work, just know that I was bangin' memphis rap while doing it. Putting in work while in the cold and darkness of winter. All by myself in study-rooms. This is T6M, and specially Mystic Stylez, fueled & certified code 😤😈. Now, I'll continue this journey while Ridin' N' Da Chevy...
 
-<center>
-    <img class="center" style="width: 350px; margin: auto auto;" src="./docs/imgs/vibe-albums.jpg" />
-</center>
+<p align="center">
+    <img style="width: 350px; margin: auto auto;" src="./docs/imgs/vibe-albums.jpg" />
+</p>
 
