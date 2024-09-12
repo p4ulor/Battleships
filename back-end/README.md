@@ -1,7 +1,7 @@
 # back-end
-<center>
-    <img class="center" style="width: 350px; margin: auto auto;" src="../../docs/imgs/cover_back-end.jpeg" />
-</center>
+<p align="center">
+    <img class="center" style="width: 350px; margin: auto auto;" src="../docs/imgs/cover_back-end.jpeg" />
+</p>
 
 ## Open this folder using IntelliJ
 The `.run` folder contains the "Run/Debug" configurations that I saved as being part of the project. It's interpreted 

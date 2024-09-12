@@ -28,13 +28,13 @@
 - A user can't be in a 2 ongoing games. 
 
 ## API diagram
-![](./imgs/api-nav-diagram.png)
+![](./diagrams/api-nav-diagram.png)
 
 ## Modeling the database
 ## Conceptual model (Entity-Relationship) 
 
 The following diagram is the Entity-Relationship model for the information managed by the system.
-![](./imgs/Entity-Relation-Diagram_LucidChart.png)
+![](./diagrams/Entity-Relation-Diagram_LucidChart.png)
 
 # Project structure
 ![](./imgs/back-end-src.png)
@@ -60,6 +60,8 @@ All get requests that can return large lists accept the query parameters `limit`
 All error handling is done with the use the annonation @ControllerAdvice on a class that extends from ResponseEntityExceptionHandler and overrides some of the methods along with defining function with the @ExceptionHandler annonation and the type of exception to handle
 
 ## About hypermedia
+Since I was doing this project alone and after I noticed that hypermedia would over-complicate the whole project I didn't do it. But here's some info about it.
+
 - [A must read!](https://medium.com/apis-you-wont-hate/rest-and-hypermedia-in-2019-76cb3421e745)
 - [Designing and Implementing Hypermedia APIs p1](http://www.infoq.com/articles/hypermedia-api-tutorial-part-one)
 - [Designing and Implementing Hypermedia APIs p2](https://www.infoq.com/articles/hypermedia-api-tutorial-part-two/)

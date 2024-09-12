@@ -1,11 +1,11 @@
 # front-end
-<center>
-    <img class="center" style="width: 350px; margin: auto auto;" src="../../docs/imgs/cover_front-end.jpeg" />
-</center>
+<p align="center">
+    <img class="center" style="width: 350px; margin: auto auto;" src="../docs/imgs/cover_front-end.jpeg" />
+</p>
 
-This code module has the necessary code and media (both static-content) for a modern browser that uses Javascript, CSS, HTML, Images and other media, in order for a client to interact with our API/Server with a friendly user interface
+This code module has the necessary code and media (both static-content) for a modern browser that uses Javascript, CSS, HTML, images and other media, in order for a client to interact with our API/Server with a friendly user interface
 
-The intended output result will be 1 .html file, 1 .js file and other media files that need to be included in the src/main/resources/public/ folder, which the API will use, so when a client tries to connect the server in the first time, the .html page is sent, along with the .js file that it references. This .js file will contain all of React's magic, which consists of modifying the HTML document tree to display whatever content we programmed to show-up.
+The intended output result will be 1 .html file, 1 .js file and other media files that need to be included in the `src/main/resources/public/` folder, which the API will use, so when a client tries to connect the server in the first time, the .html page is sent, along with the .js file that it references. This .js file will contain all of React's magic, which consists of modifying the HTML document tree to display whatever content we programmed to show-up.
 
 ## 1 - Install the dependencies in package.json (the resulting node_modules folder will be 100mb)
 - npm install
@@ -32,7 +32,7 @@ Note that this folder contains certain language syntaxes and libraries that can 
 - [react-dom](https://www.npmjs.com/package/react-dom) -> Provides DOM-specific methods to manipulate a HTML page
 - [react-router-dom](https://www.npmjs.com/package/react-router-dom) -> Used for rendering or altering Components that are incorporated into the DOM when the page is navigated throughout it's use. [See](https://blog.webdevsimplified.com/2022-07/react-router/) and [this](https://www.youtube.com/watch?v=Ul3y1LXxzdU). This library is not officially from React, but it's great. It does it's thing by calling browser-DOM functions, per example: history. [docs](https://reactrouter.com/en/main)
 #### Webpack
-- [webpack-cli](https://www.npmjs.com/package/webpack-cli) -> For bundling AKA compressing the code. CLI -> Comand Line Interface, This version of webpack allows and expects a configuration file named `webpack.config.js` which allows for a more customizable build. Webpack compresses most of our files into 1 .js file. This will result in reduced GET requests of files, reduce network load in the initial HTTP request of the client and prevents reverse engineering or hacking.
+- [webpack-cli](https://www.npmjs.com/package/webpack-cli) -> For bundling AKA compressing the code. CLI -> Comand Line Interface, This version of webpack allows and expects a configuration file named `webpack.config.js` which allows for a more customizable build. Webpack compresses all of our Typescript or Javascript files into 1 .js file. This will result in reduced GET requests of files, reduce network load in the initial HTTP request of the client and prevents reverse engineering or hacking.
 - [webpack-dev-server](https://www.npmjs.com/package/webpack-dev-server) -> A server that auto bundles, when you change code, meant to be used during development. For avoiding doing `npm webpack` and refreshing the browser
 - [style-loader](https://www.npmjs.com/package/style-loader) -> Inject CSS into the DOM
 - [css-loader](https://www.npmjs.com/package/css-loader) ->  interprets @import and url() like import/require() and will resolve them.

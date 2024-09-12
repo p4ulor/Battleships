@@ -1,45 +1,50 @@
-# About
-- A medium-large sized web-application done as the assignment for the college subject *Web Applications Development* ([DAW](https://github.com/isel-leic-daw/), [subject curricular unit](https://www.isel.pt/en/leic/web-application-development)). The assignment and the repo of this semester (22-inv-23), can be found [here p1](https://github.com/isel-leic-daw/s2223i-51d-51n-public/issues/1) & [here p2](https://github.com/isel-leic-daw/s2223i-51d-51n-public/issues/13) or in [docs](./docs/assignment-paper.md) in case it's deleted.
-- Allows playing the Battleships game PvP w/ an account
-- When creating a game, you can configure the types and number of each type of ship that's allowed, along w/ the time limits for configuring and the round of players. Rotating the ship is not supported, I didn't have time and it would be kinda hard for the way I made things work at the time
+# Battleships 🚢💥
+- A medium-large sized web-application done as the assignment for the college subject *Web Applications Development* ([DAW](https://github.com/isel-leic-daw/), [subject curricular unit](https://www.isel.pt/en/leic/web-application-development)) in the semester 22/23-winter. The assignment paper can be found [here p1](https://github.com/isel-leic-daw/s2223i-51d-51n-public/issues/1) & [here p2](https://github.com/isel-leic-daw/s2223i-51d-51n-public/issues/13) or in [docs](./docs/assignment-paper.md) in case it's deleted.
+- Allows playing the Battleships game PvP with an account
+- When creating a game, you can configure the types and number of each type of ship that's allowed, along with the time limits for configuring and the round of players. Rotating the ship is not supported, I didn't have time and it would be kinda hard for the way I made things work at the time
 
 <p align="center">
     <img style="width: 350px; margin: auto auto;" src="./docs/imgs/cover_main.jpeg" />
 </p>
 
-# Quick demo
+# Quick demo 🎥
 TODO
 
-# Quick technical overview
+# Run guide 🛠️
+Since I made a bash script and I don't want to repeat what's there, see
+- [build everything & run.sh](build%20everything%20&%20run.sh)
+
+If you're on Windows you can use WSL to run script. Or convert to batch with ChatGPT 🤷
+
+# Quick technical overview 📋
 For the full details see [docs/README.md](./docs/README.md). Main docs:
-- [quick build & run guide](./code/README.md)
 - [back-end docs](./docs/back-end.md)
 - [front-end docs](./docs/front-end.md)
-## Programming Languages
-### Used in [back-end](./code/back-end/)
+## Programming Languages 🖥️
+### Used in [back-end](./back-end/)
 - Kotlin (& Gradle, with Kotlin DSL, as the build tool)
 - PostgreSQL
-### Used in [front-end](./code/front-end/)
+### Used in [front-end](./front-end/)
 - Typescript (transpiled to Javascript)
 - HTML and CSS
-## Frameworks
+## Frameworks 🧩
 - Spring (for back-end)
 - React (for front-end)
-### Other relevant libraries or tools used in back-end
+### Relevant libraries or tools used in back-end
 - [JDBI](https://jdbi.org/) (built on top of JDBC), used to interact with the PostgreSQL database
 - [Jackson JSON parsing](https://github.com/FasterXML/jackson), a JSON parsing library (similar to Google's `gson`), used to store some lists of complex objects into a JSON string in the database
-## Recommended editors/programs to use:
+## Recommended editors/programs to use 🔌
 - **IntelliJ** (for back-end)
 - **Visual Studio Code** (for front-end)
 - [vscode-icons](https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons) extension, for much better work-directory visuals in front-end
 - **pgAdmin 4** (for PostgreSQL database operations, testing and consultation)
 - **Docker** desktop to manage the deployment of the application
 
-## Deployment methods experimented with
+## Deployment methods experimented with 🐋
 - Docker (and docker compose)
 - Microsoft Azure
 
-## Trivia
+## Trivia 🎓
 ### 1 - Evaluation / rating
 - 1st season exam: 9.6/20
 - 2nd season exam: 14.5/20
