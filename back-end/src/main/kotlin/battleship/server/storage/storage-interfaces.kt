@@ -1,6 +1,7 @@
 package battleship.server.storage
 
 import battleship.server.model.*
+import battleship.server.model.game.*
 import battleship.server.storage.db.daos.GamesList
 import battleship.server.utils.Paging
 import battleship.server.utils.TimeInterval

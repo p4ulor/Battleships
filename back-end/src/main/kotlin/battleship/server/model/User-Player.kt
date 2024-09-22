@@ -3,7 +3,7 @@ package battleship.server.model
 import battleship.server.utils.hashPassword
 import java.util.*
 
-//not data class so I'm not forced to use 'val' on password
+//not data class, so I'm not forced to use 'val' on password
 class NewUser( //Used in creation
     val name: String,
     val email: String? = null, //must be valid on creation

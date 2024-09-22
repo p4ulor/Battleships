@@ -1,7 +1,7 @@
 package battleship.server.services
 
 import battleship.server.dataIsInMemory
-import battleship.server.model.*
+import battleship.server.model.game.*
 import battleship.server.storage.GameData
 import battleship.server.storage.UserData
 import battleship.server.storage.db.GamePostgres
@@ -59,7 +59,8 @@ class GameSetupService (
 
             val shipTypesAllowed = cgr.rules?.shipsAllowed?.map{
                 val type = ShipType.convertToShipType(it.shipType) ?: return RequestResult("Ship type '${it.shipType}' doesn't exist", Errors.ShipTypeDoesntExist)
-                try {ShipsTypesAndQuantity(type, it.quantityAllowed) } catch(e: IllegalArgumentException){ return RequestResult(error = Errors.ShipTypeQuantityExceeded) }
+                try {
+                    ShipsTypesAndQuantity(type, it.quantityAllowed) } catch(e: IllegalArgumentException){ return RequestResult(error = Errors.ShipTypeQuantityExceeded) }
             }
             pl("ships allowed obtained from body -> $shipTypesAllowed")
             try {
@@ -112,8 +113,8 @@ class GameSetupService (
         val userID = userData.authenticateUser(token) ?: return RequestResult(error = Errors.InvalidTokenNotFound)
         val game = getOnGoingGameOfUser(userID, gameData) ?: return RequestResult(error = Errors.YouAreNotPartOfAnyOnGoingGame)
         if(game!=null){
-            if(game.gameStatus==GameStatus.WAITING_FOR_GUEST) return RequestResult(error = Errors.YouCantSubmitYourBoardYet)
-            if(game.gameStatus!=GameStatus.SHIPS_SETUP) //if true, then it may be: HOST_TURN or GUEST_TURN
+            if(game.gameStatus== GameStatus.WAITING_FOR_GUEST) return RequestResult(error = Errors.YouCantSubmitYourBoardYet)
+            if(game.gameStatus!= GameStatus.SHIPS_SETUP) //if true, then it may be: HOST_TURN or GUEST_TURN
                 return RequestResult(error = Errors.YouCaNoLongerChangeYourBoard)
         }
         if(game.hasSetupTimeEnded()) return RequestResult(error = Errors.BoardSetupTimeHasEnded)

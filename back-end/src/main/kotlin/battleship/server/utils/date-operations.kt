@@ -1,7 +1,7 @@
 package battleship.server.utils
 
-import battleship.server.model.MAX_DURATION_S
-import battleship.server.model.MIN_DURATION_S
+import battleship.server.model.game.MAX_DURATION_S
+import battleship.server.model.game.MIN_DURATION_S
 import java.time.Duration
 import java.time.LocalDateTime
 import java.time.LocalTime

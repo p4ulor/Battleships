@@ -41,12 +41,41 @@ button.openGame {
     min-width: max-content;
 }
 
-/*there can be not spaces between these. This effects buttons whose class is 'login' */
-button.login:hover  { /*https://codyhouse.co/nuggets/css-gradient-borders*/
-    background: linear-gradient(white, white) padding-box, linear-gradient(to right, rgb(0, 0, 97), rgb(0, 89, 255)) border-box;
+/*there can be no spaces between these. This effects buttons whose class is 'login' */
+button.highlighted.fancy:hover  { /* https://codyhouse.co/nuggets/css-gradient-borders */
+    background: linear-gradient(white, white) padding-box, linear-gradient(to right, rgb(0, 0, 97), rgb(0, 145, 255)) border-box;
     border-radius: 50em;
     border: 2px solid transparent;
     color: black;
+    transition: all;
+    transition-duration: 1s;
+}
+
+button.login:hover {
+    border-radius: 50em;
+    border: 2px solid transparent;
+    color: rgb(59, 144, 196);
+    /* 
+        padding-box is the param of type background-clip for the background
+        padding-box -> the gradient will cover the padding area of the box model, but not the border or margin
+        border-box -> The background extends to the outside edge of the border (but underneath the border in z-ordering).
+        https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip#padding-box 
+        https://developer.mozilla.org/en-US/docs/Web/CSS/background
+    */
+    background: linear-gradient(white, white) padding-box, linear-gradient( 
+        rgba(255,0,0,1) 0%, 
+        rgba(255,154,0,1) 10%,
+        rgba(208,222,33,1) 20%,
+        rgba(79,220,74,1) 30%,
+        rgba(63,218,216,1) 40%,
+        rgba(47,201,226,1) 50%,
+        rgba(28,127,238,1) 60%,
+        rgba(95,21,242,1) 70%,
+        rgba(186,12,248,1) 80%,
+        rgba(251,7,217,1) 90%,
+        rgba(255,0,0,1) 100%
+    ) border-box 0 0 / 100% 200%; /* background position(x y) / background size (width height)*/
+    animation: colorCycle 3s linear infinite;
     transition: all;
     transition-duration: 1s;
 }

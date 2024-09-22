@@ -1,6 +1,6 @@
 package battleship.server.storage.mem
 
-import battleship.server.model.*
+import battleship.server.model.game.*
 import battleship.server.services.Errors
 import battleship.server.storage.GameData
 import battleship.server.storage.db.daos.GamesList
@@ -39,7 +39,7 @@ class GameMem : GameData {
     }
 
     override fun getOpenGames(paging: Paging): List<GamesList> {
-        val g = games.filter { it.gameStatus==GameStatus.WAITING_FOR_GUEST }.map { GamesList(it.id, it.lobbyName, it.hostID) }
+        val g = games.filter { it.gameStatus== GameStatus.WAITING_FOR_GUEST }.map { GamesList(it.id, it.lobbyName, it.hostID) }
         val range = paging.toIndexRange(g.size)
         return g.subList(range.first, range.last)
     }

@@ -1,6 +1,6 @@
 package battleship.server.utils
 
-import battleship.server.model.*
+import battleship.server.model.game.*
 
 data class UserTokenAndIDResponse(
     val token: String,

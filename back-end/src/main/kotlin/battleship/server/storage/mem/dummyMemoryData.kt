@@ -1,6 +1,7 @@
 package battleship.server.storage.mem
 
 import battleship.server.model.*
+import battleship.server.model.game.*
 
 val users = mutableListOf(
     User(1, "goncalo","goncalo@gmail.com",

@@ -1,8 +1,8 @@
 package battleship.server.storage.db.daos
 
-import battleship.server.model.Game
-import battleship.server.model.GameStatus
-import battleship.server.model.Rules
+import battleship.server.model.game.Game
+import battleship.server.model.game.GameStatus
+import battleship.server.model.game.Rules
 import battleship.server.utils.Paging
 import battleship.server.utils.TimeInterval
 import com.fasterxml.jackson.annotation.JsonAutoDetect

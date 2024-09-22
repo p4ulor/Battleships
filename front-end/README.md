@@ -19,6 +19,7 @@ The intended output result will be 1 .html file, 1 .js file and other media file
 ## 2-c Run a webpack mock-server to easily try it out in the browser
 - npm run start
 - Will be available at http://localhost:8080/
+- Don't forget to have the back-end running
 
 Running the Webpack mock-server is recommended during development because it auto-updates on code changes. Note: it doesn't build files. And it only listens to changes in src.
 
@@ -51,6 +52,7 @@ Note that this folder contains certain language syntaxes and libraries that can 
 - `tsconfig.json` -> Configures how Typescript will be transformed to Javacript
 
 ## Notes
+- Typescript is transpiled into JavaScript
 - In VSC upper controls, consider toggling: View -> Word Wrap (or ALT+Z) in certain ocassions. I prefer letting my code "breathe" or leaving comments as close as possible to the code related to it (usually in the same line), but further away from the side because it can be distracting or obfuscaste sometimes IMO
 - Try deleting the .html to see what happens. Webpack creates a default .html page listing all file contents
 - By default Webpack will try to use an .html file in `public/.index.html`. I installed the `html-webpack-plugin` because of [this](https://stackoverflow.com/questions/32155154/webpack-config-how-to-just-copy-the-index-html-to-the-dist-folder). See the last lines of [webpack.config.js](webpack.config.js)

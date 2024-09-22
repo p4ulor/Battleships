@@ -1,6 +1,6 @@
 package battleship.server.utils
 
-import battleship.server.model.*
+import battleship.server.model.game.*
 import java.lang.reflect.Field
 import javax.validation.Valid
 import javax.validation.constraints.*

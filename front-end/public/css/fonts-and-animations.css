@@ -64,3 +64,9 @@
         transform: rotate(1turn)
     }
 }
+
+/* Keyframes to aid in a cyclic RGB color change */
+@keyframes colorCycle {
+    from { background-position: 0 0; }
+    to { background-position: 0 100px; }
+}

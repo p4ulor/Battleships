@@ -87,8 +87,8 @@ export function OpenGames(){
 
         return(
             <div style={{textAlign: 'center'}}>
-                <button className='highlighted' onClick={() => tryCreateGame()}>Create a game</button>
-                <button className='highlighted' onClick={() => getOpenGames()}>Refresh</button>
+                <button className='highlighted fancy' onClick={() => tryCreateGame()}>Create a game</button>
+                <button className='highlighted fancy' onClick={() => getOpenGames()}>Refresh</button>
                 <div className="openGames">
                     <ul>
                         {listOfGames}

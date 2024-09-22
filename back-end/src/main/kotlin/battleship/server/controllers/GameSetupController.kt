@@ -1,6 +1,6 @@
 package battleship.server.controllers
 
-import battleship.server.model.Game
+import battleship.server.model.game.Game
 import battleship.server.services.GameSetupService
 import battleship.server.services.processResult
 import battleship.server.storage.mem.games

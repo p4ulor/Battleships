@@ -1,9 +1,9 @@
 package battleship.server.services
 
 import battleship.server.dataIsInMemory
-import battleship.server.model.GameStatus
-import battleship.server.model.Position
-import battleship.server.model.ShotResult
+import battleship.server.model.game.GameStatus
+import battleship.server.model.game.Position
+import battleship.server.model.game.ShotResult
 import battleship.server.storage.GameData
 import battleship.server.storage.UserData
 import battleship.server.storage.db.GamePostgres
@@ -34,10 +34,10 @@ class GamePlayService ( //GameSetupService comment at the top to see why I did i
             //It's MISS, HIT, SUNK or WIN. store the changed object in DB:
             else -> { //I made this else to avoid repetitive lines of calling 'gameData.storeUserRound', both in non-win and win case
                 gameData.storeUserRound(game.id, game.gameStatus, isHost, if(isHost) game.hostShots else game.guestShots, if(isHost) game.guestShips else game.hostShips, game.roundTime)
-                if(game.gameStatus==GameStatus.WINNER_IS_HOST){
+                if(game.gameStatus== GameStatus.WINNER_IS_HOST){
                     userData.updateStats(game.hostID, 1, 1)
                     userData.updateStats(game.guestID!!, 1, 0)
-                } else if (game.gameStatus==GameStatus.WINNER_IS_GUEST){
+                } else if (game.gameStatus== GameStatus.WINNER_IS_GUEST){
                     userData.updateStats(game.hostID, 1, 0)
                     userData.updateStats(game.guestID!!, 1, 1)
                 }
@@ -83,7 +83,7 @@ class GamePlayService ( //GameSetupService comment at the top to see why I did i
         val isValidTimeToQuit = game.isGameInTheFollowingStates((mutableListOf(GameStatus.HOST_TURN, GameStatus.GUEST_TURN, GameStatus.SHIPS_SETUP)))
         if(!isValidTimeToQuit) return RequestResult(error = Errors.NoValidStateToQuit)
         var newGameStatus: GameStatus
-        if(game.gameStatus==GameStatus.SHIPS_SETUP){
+        if(game.gameStatus== GameStatus.SHIPS_SETUP){
             gameData.setGameStatus(game.id, GameStatus.ABORTED)
             pl("set game as aborted")
         } else {

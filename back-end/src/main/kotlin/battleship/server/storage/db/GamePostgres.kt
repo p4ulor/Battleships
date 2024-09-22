@@ -1,6 +1,6 @@
 package battleship.server.storage.db
 
-import battleship.server.model.*
+import battleship.server.model.game.*
 import battleship.server.services.Errors
 import battleship.server.storage.GameData
 import battleship.server.storage.db.daos.DB_Game

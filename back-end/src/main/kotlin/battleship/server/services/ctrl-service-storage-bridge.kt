@@ -1,9 +1,9 @@
 package battleship.server.services
 
-import battleship.server.model.MAX_BOARD_SIZE
-import battleship.server.model.MAX_DURATION_S
-import battleship.server.model.MIN_BOARD_SIZE
-import battleship.server.model.MIN_DURATION_S
+import battleship.server.model.game.MAX_BOARD_SIZE
+import battleship.server.model.game.MAX_DURATION_S
+import battleship.server.model.game.MIN_BOARD_SIZE
+import battleship.server.model.game.MIN_DURATION_S
 import battleship.server.utils.*
 import org.springframework.web.server.ResponseStatusException
 import kotlin.reflect.KClass

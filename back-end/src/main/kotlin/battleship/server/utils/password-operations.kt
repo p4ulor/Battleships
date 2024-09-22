@@ -15,10 +15,13 @@ fun hashPassword(password: String) : String {
 }
 
 fun isPasswordCorrect(password: String, hashedPassword: String) : Boolean {
-    var res = false
-    //I putted this in a try catch cuz there was a time when there was a strange internal server error, and I presume the exception came from here
-    try { res = pbkdf2PasswordEncoder.matches(password, hashedPassword) }
-    catch (e: Exception){ pl("isPasswordCorrect exception ->$e") }
-    if(res) pl("Correct PW") else pl("Wrong PW")
+    var res = try {
+        pbkdf2PasswordEncoder.matches(password, hashedPassword)
+    } catch (e: Exception){
+        pl("isPasswordCorrect exception ->$e")
+        false
+    }
+    if(res) pl("Correct PW")
+    else pl("Wrong PW")
     return res
 }
