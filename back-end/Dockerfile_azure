@@ -1,10 +1,10 @@
 FROM openjdk:11
 WORKDIR /usr/app
-COPY ./build/libs/battleship-server-0.0.1-SNAPSHOT.jar /usr/app
+COPY ./build/libs/battleships-server-0.0.1-SNAPSHOT.jar /usr/app
 # note: I have deleted this DB
 ENV JDBC_DATABASE_URL=jdbc:postgresql://postgresdbflex.postgres.database.azure.com:5432/postgres?user=postgresdbflex&password=123456A!
 ENV port=8080
-CMD ["java", "-jar", "battleship-server-0.0.1-SNAPSHOT.jar", "postgres"]
+CMD ["java", "-jar", "battleships-server-0.0.1-SNAPSHOT.jar", "postgres"]
 
 # This version has the characteristic that it already contains the env variables. 
 # On App Service -> Deployment Center -> Registry Settings -> Container Type: Single Container »»» And fill the slots (obvious)

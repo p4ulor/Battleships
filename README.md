@@ -26,7 +26,7 @@ For the full details see [docs/README.md](./docs/README.md). Main docs:
 |:-:|:-:|
 | <img width="60" src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kotlin_Icon.png/480px-Kotlin_Icon.png'> | <img width="60" src='https://raw.githubusercontent.com/devicons/devicon/refs/heads/master/icons/postgresql/postgresql-plain-wordmark.svg'> |
 
-- As the build tool, I used Gradle with Kotlin DSL
+As the build tool, I used Gradle with Kotlin DSL
 ### Used in [front-end](./front-end/)
 | Typescript | HTML | CSS | 
 |:-:|:-:|:-:|

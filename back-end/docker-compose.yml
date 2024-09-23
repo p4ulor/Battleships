@@ -15,7 +15,7 @@ services:
         - ./docker_pg_database:/var/lib/postgresql/data #creates and stores the postgres DB in the same file path as this file
         - ./src/main/sql-scripts/everythingScript.sql:/docker-entrypoint-initdb.d/everythingScript.sql # Alternative to this would be have the sql scripts in resources, load them during jdbi Bean execution, read the files, convert to string and try to create the table if they dont exist https://levelup.gitconnected.com/creating-and-filling-a-postgres-db-with-docker-compose-e1607f6f882f        https://stackoverflow.com/a/51759325/9375488
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"] # make docker wait for posgresql to run, before the server runs, or the server will fail the conneciton to the DB, thus switching to memory as the data-source https://stackoverflow.com/questions/35069027/docker-wait-for-postgresql-to-be-running # https://github.com/peter-evans/docker-compose-healthcheck/issues/16    https://stackoverflow.com/a/60194261/9375488
+      test: ["CMD-SHELL", "pg_isready -U postgres"] # make docker wait for posgresql to run, before the server runs, or the server will fail the connection to the DB, thus switching to memory as the data-source https://stackoverflow.com/questions/35069027/docker-wait-for-postgresql-to-be-running # https://github.com/peter-evans/docker-compose-healthcheck/issues/16    https://stackoverflow.com/a/60194261/9375488
       interval: 5s 
       timeout: 50s
       retries: 10
