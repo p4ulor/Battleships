@@ -1,8 +1,7 @@
 /docker_pg_database
 /staticdev
 !/staticdev/error
-/src/main/resources
-!/src/main/resources/application.properties
+/src/main/resources/public
 *.rar
 
 # Logs
