@@ -60,6 +60,7 @@ Note that this folder contains certain language syntaxes and libraries that can 
 - React Router avoids reloading entire documents, contrary to using link ref \<a\>
 - I tried to avoid using a CSS bootstrap because I would have to learn how to use the bootstrap and it would force me to add a lot of other elements and know what classes to assign to elements just to make a certain look work and could make the writing of the JSX a bit more confusing. And without it I have more control and learn more about CSS
 - During development and testing using Chrome Dev Tools, some scripts in a VM-12345.MySrcFile.tsx will run and will look like clones of your code and run things your code is already running. What's the most likely explanation, for my case, is [this](https://stackoverflow.com/a/30321123/9375488) although the other answers can provide more info.
+- Sometimes when running the server with a new built of the front-end, some changes might not take effect. To fix changes are taking effect, in the browser, open the inspect window, right click the refresh button and click "Empty Cache and Hard Reload"
 
 ### About React
 - https://reactjs.org/docs/dom-elements.html

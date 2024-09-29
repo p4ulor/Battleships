@@ -13,8 +13,17 @@ TODO
 # Run guide 🛠️
 Since I made a bash script and I don't want to repeat what's there, see
 - [build everything & run.sh](build%20everything%20&%20run.sh)
-
-If you're on Windows you can use WSL to run script. Or convert it to a batch script with ChatGPT 🤷. And use the gradlew.bat
+- $ `bash build\ everything\ \&\ run.sh`
+- If you intended to run with a PostgreSQL database, make sure it's running and you added the tables
+```c
+$ systemctl start postgresql // start service
+$ systemctl status postgresql // check if service started
+// To add the tables you can use pgAdmin or the terminal
+$ sudo -u postgres psql // enter postgresql terminal for user postgres (easy way)
+postgres=# \i ./back-end/src/main/sql-scripts/everythingScript.sql
+// if you're in pgAdmin, refresh the schema, the tables should be there and with some data
+```
+- If you're on Windows you can use WSL to run script. Or convert it to a batch script with ChatGPT 🤷. And use the gradlew.bat
 
 # Quick technical overview 📋
 For the full details see [docs/README.md](./docs/README.md). Main docs:
@@ -28,9 +37,9 @@ For the full details see [docs/README.md](./docs/README.md). Main docs:
 
 As the build tool, I used Gradle with Kotlin DSL
 ### Used in [front-end](./front-end/)
-| Typescript | HTML | CSS | 
-|:-:|:-:|:-:|
-| <img width="60" src='https://raw.githubusercontent.com/devicons/devicon/refs/heads/master/icons/typescript/typescript-original.svg'> | <img width="60" src='https://raw.githubusercontent.com/devicons/devicon/refs/heads/master/icons/html5/html5-plain-wordmark.svg'> | <img width="60" src='https://raw.githubusercontent.com/devicons/devicon/refs/heads/master/icons/css3/css3-plain-wordmark.svg'> |
+| Typescript | JSX | CSS | HTML | 
+|:-:|:-:|:-:|:-:|
+| <img width="60" src='https://raw.githubusercontent.com/devicons/devicon/refs/heads/master/icons/typescript/typescript-original.svg'> | <img width="60" src='./docs/imgs/jsx.png'> | <img width="60" src='https://raw.githubusercontent.com/devicons/devicon/refs/heads/master/icons/css3/css3-plain-wordmark.svg'> | <img width="60" src='https://raw.githubusercontent.com/devicons/devicon/refs/heads/master/icons/html5/html5-plain-wordmark.svg'> |
 
 ## Frameworks 🧩
 | Spring (for back-end) | React (for front-end) |
@@ -50,6 +59,13 @@ As the build tool, I used Gradle with Kotlin DSL
 ## Deployment methods experimented with 🐋
 - Docker (and docker compose)
 - Microsoft Azure
+
+## Project resume ✍️
+```
+It consists of a full-stack web-application that allows users to play the Battleship game against other players. 
+	The back-end uses the Spring framework with Kotlin and uses PostgreSQL server as the database (and the option to use plain memory for ease of use). The front-end uses the React framework with Typescript in the form of JSX (or TSX) to form the SPA (Single Page Application). I used pure CSS and Webpack as the bundler of the code and the static content (i.e. the single HTML page, the bundle.js file and all the fonts, images and audio files).
+	After all was set and done, I wrote some Docker and Docker Compose files/scripts. Some to deploy the project locally, others to deploy in Microsoft Azure Cloud. The environment included an nginx service to perform the load balancing between the 2 instances of my application. In the case of deployment in Azure, I chose to setup separate PostgreSQL server (in Azure) external to the container so I could access and monitor it.
+```
 
 ## Trivia 🎓
 ### 1 - Evaluation / rating
