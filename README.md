@@ -7,8 +7,8 @@
     <img style="width: 350px; margin: auto auto;" src="./docs/imgs/cover_main.jpeg" />
 </p>
 
-# Quick demo 🎥
-TODO
+# Quick demo 🎥🔊
+[![](https://drive.google.com/thumbnail?id=1dNRMSXuOFz_5d5BwN82VuwVz5gE7v9yN)](https://drive.google.com/file/d/1dNRMSXuOFz_5d5BwN82VuwVz5gE7v9yN/view?usp=sharing)
 
 # Run guide 🛠️
 Since I made a bash script and I don't want to repeat what's there, see
@@ -63,8 +63,8 @@ As the build tool, I used Gradle with Kotlin DSL
 ## Project resume ✍️
 ```
 It consists of a full-stack web-application that allows users to play the Battleship game against other players. 
-	The back-end uses the Spring framework with Kotlin and uses PostgreSQL server as the database (and the option to use plain memory for ease of use). The front-end uses the React framework with Typescript in the form of JSX (or TSX) to form the SPA (Single Page Application). I used pure CSS and Webpack as the bundler of the code and the static content (i.e. the single HTML page, the bundle.js file and all the fonts, images and audio files).
-	After all was set and done, I wrote some Docker and Docker Compose files/scripts. Some to deploy the project locally, others to deploy in Microsoft Azure Cloud. The environment included an nginx service to perform the load balancing between the 2 instances of my application. In the case of deployment in Azure, I chose to setup separate PostgreSQL server (in Azure) external to the container so I could access and monitor it.
+	The back-end uses the Spring framework with Kotlin and uses a PostgreSQL server as the database (there's the option to use plain memory for ease of use). The front-end uses the React framework with Typescript in the form of JSX (or TSX) to form the SPA (Single Page Application). I used Webpack as the bundler of the code and the static content (i.e. the single HTML page, the bundle.js file and all the fonts, images and audio files). As for the styles, I used pure CSS.
+	After all was set and done, I wrote some Docker and Docker Compose files/scripts. Some to deploy the project locally, others to deploy in Microsoft Azure Cloud. The environment included an nginx service to perform the load balancing between the 2 instances of my application. In the case of deployment in Azure, I chose to setup a separate PostgreSQL server (also in Azure) so I could access and monitor it, instead of being inside the container.
 ```
 
 ## Trivia 🎓
@@ -77,7 +77,7 @@ It consists of a full-stack web-application that allows users to play the Battle
 - Done alone, due to some group complications, but gave me a lot of motivation and I learned a lot. So it was actually a very good thing for me
 - Thank you professors Pedro Felix and Filipe Freitas for the help
 - Done in the winter, which is a season I don't like very much for the lack of sun and the cold, but in a sense it helps me focus and calms my mind. At the same time, I did 2 other hard subjects: Introduction to Programming in the Web ([IPW](https://github.com/isel-leic-ipw/). 90% alone) and C language and Assembly (PSC, alone). **I grew a lot as a programmer in the winter semester of 2022.** I wished developing web-apps wasn't so pushed towards the end of the course...
-- Thankfully, I had Three 6 Mafia and Svicideboys to dwell into this challenging semester. Music was very helpful for me in order to have the right mindset and energy. In some instances, the loneliness of this path and the expectation of great challenges to come while in the cold of these nights reminded that it all depended on me. To go long with this, the gangsta mindset coming from my favorite artists made me man up and put in work. When you see the code and this work, just know that I was bangin' memphis rap while doing it. Putting in work while in the cold study-rooms and in the darkness of winter. This is T6M, and specially Mystic Stylez, fueled & certified code 😤😈. Now, I'll continue this journey while Ridin' N' Da Chevy...
+- Thankfully, I had Three 6 Mafia and Svicideboys to dwell into this challenging semester. Music was very helpful for me in order to have the right mindset and energy. In some instances, the loneliness of this path and the expectation of great challenges to come while in the cold of these nights reminded that it all depended on me. To go long with this, the gangsta mindset coming from my favorite artists made me man up and put in work. When you see the code and this work, just know that I was bangin' memphis rap while doing it. Putting in work while in the cold study-rooms and in the darkness of winter. This is T6M, and specially Mystic Stylez, fueled & certified code 😤😈. Now, I'll continue Ridin' N' Da Chevy...
 
 <p align="center">
     <img style="width: 350px; margin: auto auto;" src="./docs/imgs/vibe-albums.jpg" />
