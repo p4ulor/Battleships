@@ -1,5 +1,6 @@
 package battleship.server.storage.db
 
+import battleship.server.model.Cookies
 import battleship.server.model.NewUser
 import battleship.server.model.Player
 import battleship.server.model.User
@@ -72,7 +73,7 @@ class UserPostgres (private val jdbi: Jdbi) : UserData {
 
 private fun processErrorMessage(e: Exception) : String { //todo
     val s = e.toString()
-    if(s.contains("token")) return "Token not found"
+    if(s.contains(Cookies.token)) return "Token not found"
     if(s.contains("email")) {
         if(s.contains("found")) return "Email not found"
         return "Name already exists"

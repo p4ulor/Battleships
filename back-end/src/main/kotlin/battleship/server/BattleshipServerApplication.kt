@@ -1,5 +1,6 @@
 package battleship.server
 
+import battleship.server.controllers.URIs
 import battleship.server.model.Author
 import battleship.server.model.ServerInfo
 import battleship.server.utils.NotFoundException
@@ -176,11 +177,12 @@ class BattleshipServerApplication {
     fun redirectToFrontEndOn404(): ErrorViewResolver? { //🙏 https://gist.github.com/srikarn/e89cbb459c454754654b1975e8ca50c0 🙏
         return ErrorViewResolver { request: HttpServletRequest?, status: HttpStatus, model: Map<String?, Any?>? ->
             val path = model?.get("path").toString()
-            if (status == HttpStatus.NOT_FOUND && path.startsWith("/api/")) {
+            if (status == HttpStatus.NOT_FOUND && path.startsWith(URIs.api)) {
                 pl("API path not found")
-                throw NotFoundException("The /api doesn't contain this route", path)
+                throw NotFoundException("The ${URIs.api} doesn't contain this route ${request?.requestURI}")
             } //I need to insert path otherwise it will always be "/error"...
             else {
+                pl("Website page not found status=$status, ${model?.entries.toString()}")
                 pl("Returning index.html")
                 // A file under the directory set at spring.web.resources.static-location should be provided
                 ModelAndView("forward:/index.html", emptyMap<String, Any>(), HttpStatus.OK)

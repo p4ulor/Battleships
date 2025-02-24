@@ -1,5 +1,6 @@
 package battleship.server.controllers
 
+import battleship.server.model.Cookies
 import battleship.server.model.Player
 import battleship.server.services.UserService
 import battleship.server.services.processResult
@@ -72,7 +73,7 @@ class UsersController(private val userService: UserService) {
 
     fun setCookies(response: HttpServletResponse, data: UserTokenAndIDResponse) {
         //option 1
-        val tokenCookie = Cookie("token", data.token)
+        val tokenCookie = Cookie(Cookies.token, data.token)
         tokenCookie.path = "/"
         //tokenCookie.maxAge = 0
         //tokenCookie.isHttpOnly = true

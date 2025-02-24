@@ -1,6 +1,7 @@
 package battleship.server.utils
 
 import battleship.server.enableDebugPrints
+import battleship.server.model.Cookies
 import javax.servlet.http.HttpServletRequest
 
 fun pl(s: String) = if(enableDebugPrints) println(s) else Unit
@@ -20,10 +21,17 @@ fun getAuthorizationToken(request: HttpServletRequest) : String? {// Bearer toke
     //split " " and get(1) because it returns-> "Bearer 359fcc7e-3c63-4258-8840-30e408494ba0"
     val bearerToken = request.getHeader("Authorization")?.split(" ")?.get(1) ?: null
     if(bearerToken==null) { //this processing depends (hard-coded-type-solution) on the cookies that we send to the client...
-        pl("Cookie obtained: ${request.getHeader("Cookie")}")
-        val token = request.getHeader("Cookie")?.split("=")?.get(1) ?: null
+        pl("Cookies obtained: ${request.getHeader("Cookie")}")
+        val token = request.getHeader("Cookie")?.getCookieValue(Cookies.token) ?: null
         return token
     } else return bearerToken
+}
+
+private fun String.getCookieValue(key: String): String? {
+    val start = indexOf("$key=")
+    if (start == -1) return null
+    val end = indexOf(';', start).takeIf { it != -1 } ?: length
+    return substring(start + key.length + 1, end)
 }
 
 fun doesSurpassStringBuilder(sb: StringBuilder, dim: Pair<Int?, Int?>) {

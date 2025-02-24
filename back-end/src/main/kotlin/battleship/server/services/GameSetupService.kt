@@ -113,7 +113,7 @@ class GameSetupService (
         val userID = userData.authenticateUser(token) ?: return RequestResult(error = Errors.InvalidTokenNotFound)
         val game = getOnGoingGameOfUser(userID, gameData) ?: return RequestResult(error = Errors.YouAreNotPartOfAnyOnGoingGame)
         if(game!=null){
-            if(game.gameStatus== GameStatus.WAITING_FOR_GUEST) return RequestResult(error = Errors.YouCantSubmitYourBoardYet)
+            if(game.gameStatus == GameStatus.WAITING_FOR_GUEST) return RequestResult(error = Errors.YouCantSubmitYourBoardYet)
             if(game.gameStatus!= GameStatus.SHIPS_SETUP) //if true, then it may be: HOST_TURN or GUEST_TURN
                 return RequestResult(error = Errors.YouCaNoLongerChangeYourBoard)
         }

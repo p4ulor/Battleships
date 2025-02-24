@@ -29,36 +29,12 @@ import javax.servlet.http.HttpServletRequest
 class StorageException(val apparentCause: Errors, val exceptionMsg: String = "Storage Exception") : Exception(exceptionMsg)
 
 // HTTP Exceptions
-class NotFoundException(val msg: String, val path: String? = null) : ResponseStatusException(HttpStatus.NOT_FOUND, msg)
+class NotFoundException(val msg: String) : ResponseStatusException(HttpStatus.NOT_FOUND, msg)
 class BadRequestException(val msg: String?) : ResponseStatusException(HttpStatus.BAD_REQUEST, msg) //"the server cannot or will not process the request due to something that is perceived to be a client error"
 class AuthorizationException(val msg: String?) : ResponseStatusException(HttpStatus.UNAUTHORIZED, msg) //"you are not authorized because you don't have the right authentication"
 class ForbiddenException(val msg: String?) : ResponseStatusException(HttpStatus.FORBIDDEN, msg) //"you are not authorized regardless of authentication"
 class ConflictException(val msg: String?) : ResponseStatusException(HttpStatus.CONFLICT, msg) //Hmmm... https://stackoverflow.com/a/9270432 e https://httpwg.org/specs/rfc9110.html#status.409
 class InternalServerErrorException(val msg: String? = HttpStatus.INTERNAL_SERVER_ERROR.toString()) : ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, msg)
-
-// just experimenting with it--------
-/*@Configuration
-class WebMvcConfiguration : WebMvcConfigurer { //just a test. See InfoController.redirect() too
-    override fun addViewControllers(registry: ViewControllerRegistry) {
-        registry.addViewController("/main").setViewName("redirect:/index.html")
-    }
-}*/
-
-// just experimenting with it--------
-//Works with application.properties -> server.error.path=/ups
-//When active, it will overwrite spring's default handling of errors to error/404.html, error/505.html files, and will use the handling of this function instead
-/*@Controller //Just a test. alternative to doing this is having folder named 'error' in the static folder and files named to each error status code https://stackoverflow.com/questions/37398385/spring-boot-and-custom-404-error-page
-class MyErrorController : ErrorController { //https://www.baeldung.com/spring-boot-custom-error-page
-    @RequestMapping("/ups")
-    fun handleError(request: HttpServletRequest) : String {
-        val status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE)
-        if (status != null) {
-            val statusCode = Integer.valueOf(status.toString())
-            if (statusCode == HttpStatus.NOT_FOUND.value()) return "/error/error-404.html"
-        }
-        return "/error/error-500.html"
-    }
-}*/
 
 const val requestError = "#Request-Error"
 const val bodyError = "#Body-Error"
@@ -70,7 +46,7 @@ class ResponseExceptionHandler : ResponseEntityExceptionHandler() { //https://do
     //fun handleAll(): ResponseEntity<Unit> = ResponseEntity.status(500).build() //This just makes it so when there's an InternalServerError it returns the status code, but the server doesn't crash. And crashing allows us to see the message
 
     @ExceptionHandler(NotFoundException::class)                                                //req.requestURL gets entire path. req.requestURI gets whatever is after the hostname. req.remoteAddr returns the IP, if you send request from postman you get "0:0:0:0:0:0:0:1"
-    fun nf(nf: NotFoundException, req: HttpServletRequest) = respond(nf, ProblemJsonModel(requestError, nf.status.toString(), nf.msg, nf.path ?: req.requestURI))
+    fun nf(nf: NotFoundException, req: HttpServletRequest) = respond(nf, ProblemJsonModel(requestError, nf.status.toString(), nf.msg, req.requestURI))
 
     @ExceptionHandler(BadRequestException::class)
     fun br(br: BadRequestException, req: HttpServletRequest) = respond(br, ProblemJsonModel(requestError, br.status.toString(), br.msg, req.requestURI))

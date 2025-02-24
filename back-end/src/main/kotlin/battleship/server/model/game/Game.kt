@@ -107,15 +107,15 @@ data class Game(
             return ShotResult.OFF_THE_BOARD
         }
 
-        if(gameStatus== GameStatus.HOST_TURN && isHost(userID)) {
+        if(gameStatus == GameStatus.HOST_TURN && isHost(userID)) {
             val res = makeShotAux(position, guestShips, hostShots)
-            if(res== ShotResult.SUNK){ //todo, da para dar fix codigo repetido?
+            if(res == ShotResult.SUNK){ //todo, da para dar fix codigo repetido?
                 if(guestShips.all { it.isDestroyed() }){
                     gameStatus= GameStatus.WINNER_IS_HOST
                     return ShotResult.WIN
                 }
             }
-            if(res!= ShotResult.INVALID_ALREADY_HIT) {
+            if(res != ShotResult.INVALID_ALREADY_HIT) {
                 if(abs(hostShots.size - guestShots.size)==rules.shotsPerRound) {
                     roundTime.delayDeadlineWithSameInterval() //restartRoundTimer
                     switchTurns()
@@ -123,15 +123,15 @@ data class Game(
             }
             return res
         }
-        else if(gameStatus== GameStatus.GUEST_TURN && !isHost(userID)){
+        else if(gameStatus == GameStatus.GUEST_TURN && !isHost(userID)){
             val res = makeShotAux(position, hostShips, guestShots)
-            if(res== ShotResult.SUNK){ //todo, da para dar fix codigo repetido?
+            if(res == ShotResult.SUNK){ //todo, da para dar fix codigo repetido?
                 if(hostShips.all { it.isDestroyed() }){
                     gameStatus= GameStatus.WINNER_IS_GUEST
                     return ShotResult.WIN
                 }
             }
-            if(res!= ShotResult.INVALID_ALREADY_HIT) {
+            if(res != ShotResult.INVALID_ALREADY_HIT) {
                 if(abs(guestShots.size-hostShots.size)+1==rules.shotsPerRound){ //+1 cuz of the difference of 1 player always starting first
                     roundTime.delayDeadlineWithSameInterval() //restartRoundTimer
                     switchTurns()
@@ -251,7 +251,7 @@ enum class GameStatus{
         }
     }
 
-    fun isGameOnGoing() = this== HOST_TURN || this== GUEST_TURN
+    fun isGameOnGoing() = this == HOST_TURN || this == GUEST_TURN
 
     companion object {
         fun stringToGameStatus(s: String) : GameStatus {

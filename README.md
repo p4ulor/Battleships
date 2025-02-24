@@ -61,11 +61,13 @@ As the build tool, I used Gradle with Kotlin DSL
 - Microsoft Azure
 
 ## Project resume ✍️
-```
+
 It consists of a full-stack web-application that allows users to play the Battleship game against other players. 
-	The back-end uses the Spring framework with Kotlin and uses a PostgreSQL server as the database (there's the option to use plain memory for ease of use). The front-end uses the React framework with Typescript in the form of JSX (or TSX) to form the SPA (Single Page Application). I used Webpack as the bundler of the code and the static content (i.e. the single HTML page, the bundle.js file and all the fonts, images and audio files). As for the styles, I used pure CSS.
-	After all was set and done, I wrote some Docker and Docker Compose files/scripts. Some to deploy the project locally, others to deploy in Microsoft Azure Cloud. The environment included an nginx service to perform the load balancing between the 2 instances of my application. In the case of deployment in Azure, I chose to setup a separate PostgreSQL server (also in Azure) so I could access and monitor it, instead of being inside the container.
-```
+	
+The back-end uses the Spring framework with Kotlin and uses a PostgreSQL server as the database (there's the option to use plain memory for ease of use). The front-end uses the React framework with Typescript in the form of JSX (or TSX) to form the SPA (Single Page Application). I used Webpack as the bundler of the code and the static content (i.e. the single HTML page, the bundle.js file and all the fonts, images and audio files). As for the styles, I used pure CSS.
+
+After all was set and done, I wrote some Docker and Docker Compose files/scripts. Some to deploy the project locally, others to deploy in Microsoft Azure Cloud. The environment included an nginx service to perform the load balancing between the 2 instances of my application. In the case of deployment in Azure, I chose to setup a separate PostgreSQL server (also in Azure) so I could access and monitor it, instead of being inside the container.
+
 
 ## Trivia 🎓
 ### 1 - Evaluation / rating
